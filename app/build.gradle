@@ -12,6 +12,9 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+        // For androidx.renderscript.
+        renderscriptTargetApi 11
+        renderscriptSupportModeEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -34,6 +37,11 @@ android {
 }
 
 dependencies {
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+    implementation "androidx.activity:activity-ktx:1.4.0"
+    // WorkInfo, WorkManager
+    implementation "androidx.work:work-runtime-ktx:2.7.1"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'

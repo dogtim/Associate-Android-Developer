@@ -1,5 +1,6 @@
 package com.example.associate.training
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,26 +8,24 @@ import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 
-class MainEntryAdapter(private val timeLines: List<String>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class MainEntryAdapter(private val timeLines: List<String>) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.card_view_timeline, parent, false)
+            .inflate(R.layout.card_view_timeline, parent, false)
         return DesignViewHolder(view)
     }
 
-    override fun onBindViewHolder(@Nullable holder:  RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(@Nullable holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DesignViewHolder) {
             val tutorName = timeLines[position]
             holder.textView.text = tutorName
             val context = holder.itemView.context
 
             holder.itemView.setOnClickListener {
-                // val intent = Intent(context, CalendarActivity::class.java).apply {
-                    //putExtra(EXTRA_MESSAGE_TUTOR_NAME, tutorName)
-                //}
-
-                //context.startActivity(intent)
+                val intent = Intent(context, BlurWorkManagerActivity::class.java)
+                context.startActivity(intent)
             }
         }
 
