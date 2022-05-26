@@ -16,7 +16,7 @@
 
 @file:JvmName("WorkerUtils")
 
-package com.example.associate.training.workers
+package com.example.associate.training.workmanager.workers
 
 import android.app.NotificationChannel
 import android.app.NotificationManager

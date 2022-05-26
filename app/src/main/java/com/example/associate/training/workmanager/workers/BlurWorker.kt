@@ -1,4 +1,4 @@
-package com.example.associate.training.workers
+package com.example.associate.training.workmanager.workers
 
 import android.content.Context
 import android.graphics.BitmapFactory

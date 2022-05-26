@@ -1,4 +1,4 @@
-package com.example.associate.training
+package com.example.associate.training.workmanager.workers
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.work.WorkInfo
+import com.example.associate.training.R
 import com.example.associate.training.databinding.ActivityBlurBinding
 
 class BlurWorkManagerActivity : AppCompatActivity() {
