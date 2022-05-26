@@ -8,14 +8,6 @@
     android:orientation="vertical"
     tools:background="#FFFFFF">
 
-    <TextView
-        android:id="@+id/main_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/main_title"
-        android:gravity="center"
-        android:textSize="40sp" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/tutorsRecyclerView"
         android:layout_width="match_parent"
