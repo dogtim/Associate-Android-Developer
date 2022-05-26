@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">AssociateAndroidDeveloper</string>
+    <string name="app_name">Associate Android Developer</string>
+    <string name="main_title">Examples</string>
 </resources>
