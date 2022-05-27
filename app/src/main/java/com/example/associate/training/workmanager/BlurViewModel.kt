@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.associate.training.workmanager.workers
+package com.example.associate.training.workmanager
 
 import android.app.Application
 import android.content.ContentResolver
@@ -28,6 +28,9 @@ import com.example.associate.training.IMAGE_MANIPULATION_WORK_NAME
 import com.example.associate.training.KEY_IMAGE_URI
 import com.example.associate.training.R
 import com.example.associate.training.TAG_OUTPUT
+import com.example.associate.training.workmanager.workers.BlurWorker
+import com.example.associate.training.workmanager.workers.CleanupWorker
+import com.example.associate.training.workmanager.workers.SaveImageToFileWorker
 
 class BlurViewModel(application: Application) : ViewModel() {
     private val workManager = WorkManager.getInstance(application)

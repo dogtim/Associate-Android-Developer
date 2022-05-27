@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
-import com.example.associate.training.workmanager.workers.BlurWorkManagerActivity
+import com.example.associate.training.workmanager.BlurWorkManagerActivity
 
 class MainEntryAdapter(private val timeLines: List<String>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {

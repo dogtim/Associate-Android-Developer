@@ -1,4 +1,4 @@
-package com.example.associate.training.workmanager.workers
+package com.example.associate.training.workmanager
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
