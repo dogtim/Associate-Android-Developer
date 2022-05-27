@@ -7,11 +7,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.associate.training.busschedule.BusScheduleActivity
 import com.example.associate.training.workmanager.BlurWorkManagerActivity
 
-class MainEntryAdapter(private val timeLines: List<String>) :
+data class Entry(val name: String, val classk: Class<*>?)
+
+class MainEntryAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private val entries: List<Entry> = listOf(
+        Entry("WorkManager", BlurWorkManagerActivity::class.java),
+        Entry("ROOM Database with sql", BusScheduleActivity::class.java))
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view_timeline, parent, false)
@@ -20,12 +26,12 @@ class MainEntryAdapter(private val timeLines: List<String>) :
 
     override fun onBindViewHolder(@Nullable holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is DesignViewHolder) {
-            val tutorName = timeLines[position]
-            holder.textView.text = tutorName
+            val entry = entries[position]
+            holder.textView.text = entry.name
             val context = holder.itemView.context
 
             holder.itemView.setOnClickListener {
-                val intent = Intent(context, BlurWorkManagerActivity::class.java)
+                val intent = Intent(context, entry.classk)
                 context.startActivity(intent)
             }
         }
@@ -34,7 +40,7 @@ class MainEntryAdapter(private val timeLines: List<String>) :
 
     // return the number of the items in the list
     override fun getItemCount(): Int {
-        return timeLines.size
+        return entries.size
     }
 
     class DesignViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {

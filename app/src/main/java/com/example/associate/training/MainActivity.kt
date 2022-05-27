@@ -3,6 +3,7 @@ package com.example.associate.training
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.associate.training.busschedule.BusScheduleApplication
 import com.example.associate.training.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -17,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupAdapter() {
-        adapter = MainEntryAdapter(listOf("Adaptive layouts", "TODO_2", "TODO_3", "TODO_4"))
+        adapter = MainEntryAdapter()
         binding.tutorsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
         binding.tutorsRecyclerView.adapter = adapter
     }

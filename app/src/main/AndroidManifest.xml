@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name="com.example.associate.training.busschedule.BusScheduleApplication"
         android:theme="@style/Theme.AssociateAndroidDeveloper">
         <activity
             android:name=".MainActivity"
@@ -22,6 +23,12 @@
             android:name=".workmanager.BlurWorkManagerActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".busschedule.BusScheduleActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>
