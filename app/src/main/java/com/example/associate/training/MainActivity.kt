@@ -3,7 +3,6 @@ package com.example.associate.training
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.associate.training.busschedule.BusScheduleApplication
 import com.example.associate.training.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -18,8 +18,8 @@ class MainEntryAdapter() :
 
     private val entries: List<Entry> = listOf(
         Entry("WorkManager", BlurWorkManagerActivity::class.java),
-        Entry("ROOM Database with sql", BusScheduleActivity::class.java),
-        Entry("Amphibian with Retrofit, Moshi, DataBinding", AmphibianActivity::class.java))
+        Entry("ROOM Database \n sql", BusScheduleActivity::class.java),
+        Entry("Amphibian \n Retrofit, Moshi, DataBinding", AmphibianActivity::class.java))
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view_timeline, parent, false)
