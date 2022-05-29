@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
+import com.example.associate.training.amphibian.AmphibianActivity
 import com.example.associate.training.busschedule.BusScheduleActivity
 import com.example.associate.training.workmanager.BlurWorkManagerActivity
 
@@ -17,7 +18,8 @@ class MainEntryAdapter() :
 
     private val entries: List<Entry> = listOf(
         Entry("WorkManager", BlurWorkManagerActivity::class.java),
-        Entry("ROOM Database with sql", BusScheduleActivity::class.java))
+        Entry("ROOM Database with sql", BusScheduleActivity::class.java),
+        Entry("Amphibian with Retrofit, Moshi, DataBinding", AmphibianActivity::class.java))
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view_timeline, parent, false)

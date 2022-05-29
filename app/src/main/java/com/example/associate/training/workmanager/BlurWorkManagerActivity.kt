@@ -32,7 +32,6 @@ class BlurWorkManagerActivity : AppCompatActivity() {
     // Define the observer function
     private fun workInfosObserver(): Observer<List<WorkInfo>> {
         return Observer { listOfWorkInfo ->
-            Log.i("dogtim", "listOfWorkInfo")
             // Note that these next few lines grab a single WorkInfo if it exists
             // This code could be in a Transformation in the ViewModel; they are included here
             // so that the entire process of displaying a WorkInfo is in one location.
@@ -47,10 +46,8 @@ class BlurWorkManagerActivity : AppCompatActivity() {
             val workInfo = listOfWorkInfo[0]
 
             if (workInfo.state.isFinished) {
-                Log.i("dogtim", "workInfo.state.isFinished")
                 showWorkFinished()
             } else {
-                Log.i("dogtim", "workInfo.state.InProgress")
                 showWorkInProgress()
             }
         }

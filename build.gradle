@@ -3,6 +3,8 @@ buildscript {
     ext {
         nav_version = '2.4.2'
         room_version = '2.4.2'
+        moshi_version = '1.9.3'
+        retrofit_version = '2.9.0'
     }
 
     dependencies {

@@ -6,8 +6,10 @@
 - Create sample codes which derived from Google Official Training
 
 
-# Features
-- viewBinding
+# Android Components
+- Navigation
+- ViewModel
+- LiveData & FlowData
 
 ## Unit 1: Kotlin basics
 
@@ -16,6 +18,11 @@
 ## Unit 3: Navigation
 
 ## Unit 4: Connect to the internet
+- [Coroutines] (https://developer.android.com/courses/pathways/android-basics-kotlin-unit-4-pathway-1)
+    - Job(Deferred), CoroutineScope, Dispatcher, suspend
+    - A Deferred (also called a Promise or Future in other languages) guarantees that a value will be returned to this object at a later time
+    - runBlocking(), which as the name implies, starts a new coroutine and blocks the current thread until completion
+    - Moshi, Retrofit
 
 ## Unit 5: Data persistence
 - [SQL basics]([https://developer.android.com/courses/android-basics-kotlin/unit-6](https://developer.android.com/codelabs/basic-android-kotlin-training-sql-basics?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-5-pathway-1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-sql-basics#8))
