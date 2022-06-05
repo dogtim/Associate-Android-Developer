@@ -68,12 +68,13 @@ class LetterListFragment : Fragment() {
         recyclerView = binding.recyclerView
         // Initialize SettingsDataStore
         SettingsDataStore = SettingsDataStore(requireContext())
-        SettingsDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner, { value ->
+
+        SettingsDataStore.preferenceFlow.asLiveData().observe(viewLifecycleOwner) { value ->
             isLinearLayoutManager = value
             chooseLayout()
             // Redraw the menu
             activity?.invalidateOptionsMenu()
-        })
+        }
     }
 
     /**

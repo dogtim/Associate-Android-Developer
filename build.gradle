@@ -6,11 +6,10 @@ buildscript {
         moshi_version = '1.9.3'
         retrofit_version = '2.9.0'
 
-        test_core_version = "1.4.1-alpha06"
-        espresso_version = "3.5.0-alpha06"
+        test_core_version = "1.4.0"
+        espresso_version = "3.4.0"
         extJUnit_version = "1.1.4-alpha06"
         runner_version = "1.5.0-alpha03"
-        rules_version = "1.4.1-alpha06"
     }
 
     dependencies {

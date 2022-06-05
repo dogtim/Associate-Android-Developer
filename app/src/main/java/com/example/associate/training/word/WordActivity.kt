@@ -21,7 +21,6 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.associate.training.R
-import com.example.associate.training.databinding.ActivityMainBinding
 import com.example.associate.training.databinding.ActivityWordBinding
 
 /**
