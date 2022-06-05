@@ -26,4 +26,11 @@
     <string name="bus_stop_header">Stop Name</string>
     <!-- Shown above right column listing arrival times in full schedule fragment -->
     <string name="arrival_time_header">Arrival Time</string>
+
+    <!-- Word App -->
+    <string name="detail_prefix">Words That Start With</string>
+    <string name="action_switch_layout">Switch Layout</string>
+    <string name="look_up_word">Look up word in a Browser Search</string>
+    <string name="look_up_words">Show Stored Words</string>
+    <string name="word_list_fragment_label">Words That Start With {letter}</string>
 </resources>

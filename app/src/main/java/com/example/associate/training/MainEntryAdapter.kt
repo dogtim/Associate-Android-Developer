@@ -9,6 +9,7 @@ import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.associate.training.amphibian.AmphibianActivity
 import com.example.associate.training.busschedule.BusScheduleActivity
+import com.example.associate.training.word.WordActivity
 import com.example.associate.training.workmanager.BlurWorkManagerActivity
 
 data class Entry(val name: String, val classk: Class<*>?)
@@ -19,7 +20,8 @@ class MainEntryAdapter() :
     private val entries: List<Entry> = listOf(
         Entry("WorkManager", BlurWorkManagerActivity::class.java),
         Entry("ROOM Database \n sql", BusScheduleActivity::class.java),
-        Entry("Amphibian \n Retrofit, Moshi, DataBinding", AmphibianActivity::class.java))
+        Entry("Amphibian \n Retrofit, Moshi, DataBinding", AmphibianActivity::class.java),
+        Entry("WordActivity", WordActivity::class.java))
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.card_view_timeline, parent, false)

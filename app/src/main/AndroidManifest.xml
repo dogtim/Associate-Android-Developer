@@ -35,6 +35,11 @@
             android:name=".amphibian.AmphibianActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".word.WordActivity"
+            android:exported="true">
+        </activity>
     </application>
 
 </manifest>

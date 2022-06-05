@@ -10,8 +10,11 @@
 - Navigation
 - ViewModel
 - Coroutine 
+  - runBlocking
+  - lifecycleScope.launch
 - LiveData & FlowData
 - WorkManager
+- DataStore
 
 ## Unit 1: Kotlin basics
 
