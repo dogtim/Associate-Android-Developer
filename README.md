@@ -1,22 +1,24 @@
 # The Purpose
-- To learn the modern Android platform, including architecture and jetpack or other you should to learn in Android
-- To get the certificate from [Associate Android Developer Certification](https://grow.google/certificates/android-developer/#?modal_active=none)
+- Learn the modern Android platform, including architecture and jetpack or other you should to learn in Android
+- Ready to get the certificate from [Associate Android Developer Certification](https://grow.google/certificates/android-developer/#?modal_active=none)
 
 # How?
-- Create sample codes which derived from Google Official Training
-
+- Create sample codes derived from Google Official Training
+- Add some boilerplate code for practicing and examination
 
 # Android Components
 - Navigation
 - ViewModel
+- Coroutine 
 - LiveData & FlowData
+- WorkManager
 
 ## Unit 1: Kotlin basics
 
 ## Unit 2: Layouts
 
 ## Unit 3: Navigation
-
+- Kotlin Collection, Map, Set, List etc, and how use the high-level function
 ## Unit 4: Connect to the internet
 - [Coroutines] (https://developer.android.com/courses/pathways/android-basics-kotlin-unit-4-pathway-1)
     - Job(Deferred), CoroutineScope, Dispatcher, suspend
