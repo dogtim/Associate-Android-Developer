@@ -40,6 +40,12 @@
             android:name=".word.WordActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".inventory.InventoryActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

@@ -15,7 +15,6 @@
  */
 package com.example.associate.training.amphibian.ui
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -24,7 +23,7 @@ import com.example.associate.training.amphibian.network.Amphibian
 import com.example.associate.training.amphibian.network.AmphibianApi
 import kotlinx.coroutines.launch
 
-enum class AmphibianApiStatus {LOADING, ERROR, DONE}
+enum class AmphibianApiStatus { LOADING, ERROR, DONE }
 
 class AmphibianViewModel : ViewModel() {
 
@@ -36,7 +35,6 @@ class AmphibianViewModel : ViewModel() {
 
     private val _amphibian = MutableLiveData<Amphibian>()
     val amphibian: LiveData<Amphibian> = _amphibian
-
 
     fun onAmphibianClicked(amphibian: Amphibian) {
         _amphibian.value = amphibian
