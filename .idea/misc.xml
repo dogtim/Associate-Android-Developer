@@ -4,16 +4,19 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_connection_error.xml" value="0.228" />
+        <entry key="app/src/main/res/drawable/ic_edit.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/ic_linear_layout.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/loading_img.xml" value="0.172" />
         <entry key="app/src/main/res/layout/activity_amphibian.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/activity_blur.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/activity_bus_schedule.xml" value="0.16302083333333334" />
+        <entry key="app/src/main/res/layout/activity_inventory.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/activity_word.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/bus_stop_item.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/card_view_design.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/card_view_timeline.xml" value="0.32135416666666666" />
+        <entry key="app/src/main/res/layout/fragment_add_item.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/fragment_amphibian_detail.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/fragment_amphibian_list.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_letter_list.xml" value="0.16302083333333334" />

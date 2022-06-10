@@ -22,6 +22,8 @@
 
 ## Unit 3: Navigation
 - Kotlin Collection, Map, Set, List etc, and how use the high-level function
+- ViewModel, Kotlin Delegate, Get() / Set(), backing property
+- MaterialAlertDialogBuilder
 ## Unit 4: Connect to the internet
 - [Coroutines] (https://developer.android.com/courses/pathways/android-basics-kotlin-unit-4-pathway-1)
     - Job(Deferred), CoroutineScope, Dispatcher, suspend
@@ -31,7 +33,8 @@
 
 ## Unit 5: Data persistence
 - [SQL basics]([https://developer.android.com/courses/android-basics-kotlin/unit-6](https://developer.android.com/codelabs/basic-android-kotlin-training-sql-basics?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fandroid-basics-kotlin-unit-5-pathway-1%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fbasic-android-kotlin-training-sql-basics#8))
-    - SQL data types, Aggregate functions
+    - SQL data types, Aggregate functions 
+- ROOM/DAO/SQLite db
 ## Unit 6: WorkManager
 - [android-basics-kotlin: unit-6](https://developer.android.com/courses/android-basics-kotlin/unit-6)
     - WorkManager, OneTimeWorkRequest, WorkRequests, WorkInfo

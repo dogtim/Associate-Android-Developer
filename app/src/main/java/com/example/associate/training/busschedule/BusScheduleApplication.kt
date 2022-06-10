@@ -17,7 +17,9 @@ package com.example.associate.training.busschedule
 
 import android.app.Application
 import com.example.associate.training.busschedule.database.AppDatabase
+import com.example.associate.training.inventory.data.ItemRoomDatabase
 
 class BusScheduleApplication : Application() {
     val database: AppDatabase by lazy { AppDatabase.getDatabase(this) }
+    val inventoryDatabase: ItemRoomDatabase by lazy { ItemRoomDatabase.getDatabase(this) }
 }
