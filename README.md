@@ -17,7 +17,16 @@
   - With Kotlin, we prefer using properties rather than functions for such cases.
   - top-level functions
   - Scope functions: let, apply, with, run, also
-  
+- Ready to get the certificate from [Add Kotlin to an existing app](https://developer.android.com/kotlin/add-kotlin)
+  - How to create Java/Kotlin files
+  - Source organization
+  - Code conversion and nullability
+  - lateinit
+  - safe-call (?.) v.s elvis operator (?:)
+- Calling Kotlin codes from Java
+  - The @JvmStatic annotation tells the Kotlin compiler to generate a static version of the annotated member or method
+  - The @JvmName annotation is a powerful tool that influences how Kotlin names classes, properties, and methods in the bytecode it generates for the Java Virtual Machine (JVM). We'll discuss another of its uses later in this codelab.
+  - @JvmStatic @Throws(IOException::class)
 # Android Components
 - Navigation
 - ViewModel
