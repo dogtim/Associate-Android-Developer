@@ -27,6 +27,16 @@
   - The @JvmStatic annotation tells the Kotlin compiler to generate a static version of the annotated member or method
   - The @JvmName annotation is a powerful tool that influences how Kotlin names classes, properties, and methods in the bytecode it generates for the Java Virtual Machine (JVM). We'll discuss another of its uses later in this codelab.
   - @JvmStatic @Throws(IOException::class)
+- [Kotlin-Java interop guide](https://developer.android.com/kotlin/interop)
+  - No hard keywords, backticks
+  - Nullability annotations
+  - Lambda parameters last
+  - Property prefixes
+    - is, set, get
+  - Operator overloading
+  - Defensive copies
+  - Function overloads for defaults
+  - Lint: File > Preferences > Editor > Inspections
 # Android Components
 - Navigation
 - ViewModel
