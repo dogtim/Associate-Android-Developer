@@ -74,3 +74,9 @@
   - Work is persistent when it remains scheduled through app restarts and system reboots
   - For background processing.
   - Versus Coroutines, All asynchronous work that doesn't need to be persistent.
+
+## Tips
+- How to transmission the JSON text into Kotlin object easily?
+  - Copy and paste the JSON text to [jsonFormatter online website](https://jsonformatter.curiousconcept.com/#)
+  - Copy and paste the beautified JSON text to [json2KT](https://json2kt.com/)
+  - Download the data class
