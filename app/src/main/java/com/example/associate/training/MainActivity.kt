@@ -32,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch(Dispatchers.IO) {
             val repository = DummyRepository()
             val result = repository.makeLoginRequest()
+
+            Log.i("dogtim", "result " + result.toString())
         }
 
     }

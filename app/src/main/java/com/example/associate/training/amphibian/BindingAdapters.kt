@@ -23,6 +23,9 @@ import com.example.associate.training.amphibian.network.Amphibian
 import com.example.associate.training.amphibian.ui.AmphibianApiStatus
 import com.example.associate.training.amphibian.ui.AmphibianListAdapter
 import com.example.associate.training.R
+import com.example.associate.training.dummynetwork.data.DummyData
+import com.example.associate.training.dummynetwork.data.DummyUsers
+import com.example.associate.training.dummynetwork.ui.DummyUserListAdapter
 
 /**
  * Updates the data shown in the [RecyclerView]
@@ -30,6 +33,15 @@ import com.example.associate.training.R
 @BindingAdapter("listData")
 fun bindRecyclerView(recyclerView: RecyclerView, data: List<Amphibian>?) {
     val adapter = recyclerView.adapter as AmphibianListAdapter
+    adapter.submitList(data)
+}
+
+/**
+ * Updates the data shown in the [RecyclerView]
+ */
+@BindingAdapter("userListData")
+fun bindRecyclerView2(recyclerView: RecyclerView, data: List<DummyData>?) {
+    val adapter = recyclerView.adapter as DummyUserListAdapter
     adapter.submitList(data)
 }
 

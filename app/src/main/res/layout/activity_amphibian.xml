@@ -26,6 +26,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:defaultNavHost="true"
-        app:navGraph="@navigation/nav_dummy_graph"/>
+        app:navGraph="@navigation/nav_amphibian_graph"/>
 
 </FrameLayout>

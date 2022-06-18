@@ -20,9 +20,11 @@
         <entry key="app/src/main/res/layout/fragment_add_item.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/fragment_amphibian_detail.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/fragment_amphibian_list.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_dummy_user_list.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/fragment_letter_list.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/full_schedule_fragment.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/item_view.xml" value="0.16302083333333334" />
+        <entry key="app/src/main/res/layout/list_dummy_item.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/list_view_item.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/menu/layout_menu.xml" value="0.16302083333333334" />
       </map>
