@@ -30,9 +30,9 @@ class DummyUserListAdapter() :
     class DummyUserListViewHolder(
         var binding: ListDummyItemBinding
         ) : RecyclerView.ViewHolder(binding.root){
-        fun bind(clickListener: AmphibianListener, dummyData: DummyData) {
+
+        fun bind(dummyData: DummyData) {
             binding.dummydata = dummyData
-            binding.clickListener = clickListener
             binding.executePendingBindings()
         }
     }
@@ -60,7 +60,7 @@ class DummyUserListAdapter() :
 
     override fun onBindViewHolder(holder: DummyUserListAdapter.DummyUserListViewHolder, position: Int) {
         val amphibian = getItem(position)
-        //holder.bind(clickListener, amphibian)
+        holder.bind(amphibian)
     }
 }
 

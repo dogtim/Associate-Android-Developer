@@ -35,7 +35,7 @@
         app:cardCornerRadius="4dp">
 
         <TextView
-            android:id="@+id/amphibian_name"
+            android:id="@+id/dummy_data_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:ellipsize="end"
@@ -43,7 +43,7 @@
             android:padding="8dp"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="18sp"
-            android:text="@{dummydata.title}"
+            android:text="@{dummydata.firstName}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="Frog" />
