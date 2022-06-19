@@ -20,8 +20,8 @@
     android:background="?android:attr/selectableItemBackground"
     android:paddingLeft="@dimen/bus_stop_item_horizontal_padding"
     android:paddingRight="@dimen/bus_stop_item_horizontal_padding"
-    android:paddingTop="@dimen/bus_stop_item_vertical_padding"
-    android:paddingBottom="@dimen/bus_stop_item_vertical_padding">
+    android:paddingTop="@dimen/padding_between_elements"
+    android:paddingBottom="@dimen/padding_between_elements">
 
     <TextView
         android:id="@+id/stop_name_text_view"
