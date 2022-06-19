@@ -6,12 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
-import com.example.associate.training.R
-import com.example.associate.training.amphibian.ui.AmphibianListAdapter
-import com.example.associate.training.amphibian.ui.AmphibianListener
-import com.example.associate.training.amphibian.ui.AmphibianViewModel
-import com.example.associate.training.databinding.FragmentAmphibianListBinding
 import com.example.associate.training.databinding.FragmentDummyUserListBinding
 
 class DummyUserListFragment : Fragment() {
