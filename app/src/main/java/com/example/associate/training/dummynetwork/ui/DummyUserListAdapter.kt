@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
+import coil.transform.CircleCropTransformation
+import com.example.associate.training.R
 import com.example.associate.training.databinding.ListDummyItemBinding
 import com.example.associate.training.dummynetwork.data.DummyData
 
@@ -17,6 +20,13 @@ class DummyUserListAdapter :
 
         fun bind(dummyData: DummyData) {
             binding.dummydata = dummyData
+            dummyData.picture.let {
+                binding.dummyDataUserAvatar.load(it) {
+                    crossfade(true)
+                    placeholder(R.drawable.ic_action_name)
+                    transformations(CircleCropTransformation())
+                }
+            }
             binding.executePendingBindings()
         }
     }
