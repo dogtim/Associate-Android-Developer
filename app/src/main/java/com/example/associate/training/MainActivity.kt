@@ -2,13 +2,8 @@ package com.example.associate.training
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.associate.training.databinding.ActivityMainBinding
-import com.example.associate.training.dummynetwork.DummyRepository
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
     private lateinit var adapter: MainEntryAdapter
@@ -19,7 +14,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupAdapter()
-        initNetwork()
     }
 
     private fun setupAdapter() {
@@ -28,13 +22,4 @@ class MainActivity : AppCompatActivity() {
         binding.tutorsRecyclerView.adapter = adapter
     }
 
-    private fun initNetwork() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            val repository = DummyRepository()
-            val result = repository.makeLoginRequest()
-
-            Log.i("dogtim", "result " + result.toString())
-        }
-
-    }
 }

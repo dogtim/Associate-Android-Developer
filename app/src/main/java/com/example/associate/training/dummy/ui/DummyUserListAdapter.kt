@@ -1,4 +1,4 @@
-package com.example.associate.training.dummynetwork.ui
+package com.example.associate.training.dummy.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,7 +9,7 @@ import coil.load
 import coil.transform.CircleCropTransformation
 import com.example.associate.training.R
 import com.example.associate.training.databinding.ListDummyItemBinding
-import com.example.associate.training.dummynetwork.data.DummyData
+import com.example.associate.training.dummy.data.DummyData
 
 class DummyUserListAdapter :
     ListAdapter<DummyData, DummyUserListAdapter.DummyUserListViewHolder>(DiffCallback) {
@@ -23,7 +23,7 @@ class DummyUserListAdapter :
             dummyData.picture.let {
                 binding.dummyDataUserAvatar.load(it) {
                     crossfade(true)
-                    placeholder(R.drawable.ic_action_name)
+                    placeholder(R.drawable.ic_disconnect_placeholder)
                     transformations(CircleCropTransformation())
                 }
             }

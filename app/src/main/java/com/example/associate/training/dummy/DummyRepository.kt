@@ -1,6 +1,6 @@
-package com.example.associate.training.dummynetwork
+package com.example.associate.training.dummy
 
-import com.example.associate.training.dummynetwork.data.DummyUsers
+import com.example.associate.training.dummy.data.DummyUsers
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

@@ -9,7 +9,7 @@ import androidx.annotation.Nullable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.associate.training.amphibian.AmphibianActivity
 import com.example.associate.training.busschedule.BusScheduleActivity
-import com.example.associate.training.dummynetwork.DummyActivity
+import com.example.associate.training.dummy.DummyActivity
 import com.example.associate.training.inventory.InventoryActivity
 import com.example.associate.training.word.WordActivity
 import com.example.associate.training.workmanager.BlurWorkManagerActivity

@@ -1,4 +1,4 @@
-package com.example.associate.training.dummynetwork.data
+package com.example.associate.training.dummy.data
 
 import com.google.gson.annotations.SerializedName
 

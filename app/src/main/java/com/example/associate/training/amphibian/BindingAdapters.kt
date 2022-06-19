@@ -23,9 +23,8 @@ import com.example.associate.training.amphibian.network.Amphibian
 import com.example.associate.training.amphibian.ui.AmphibianApiStatus
 import com.example.associate.training.amphibian.ui.AmphibianListAdapter
 import com.example.associate.training.R
-import com.example.associate.training.dummynetwork.data.DummyData
-import com.example.associate.training.dummynetwork.data.DummyUsers
-import com.example.associate.training.dummynetwork.ui.DummyUserListAdapter
+import com.example.associate.training.dummy.data.DummyData
+import com.example.associate.training.dummy.ui.DummyUserListAdapter
 
 /**
  * Updates the data shown in the [RecyclerView]

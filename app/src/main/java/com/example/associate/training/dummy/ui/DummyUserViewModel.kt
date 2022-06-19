@@ -1,9 +1,9 @@
-package com.example.associate.training.dummynetwork.ui
+package com.example.associate.training.dummy.ui
 
 import androidx.lifecycle.*
-import com.example.associate.training.dummynetwork.DummyRepository
-import com.example.associate.training.dummynetwork.Result
-import com.example.associate.training.dummynetwork.data.DummyData
+import com.example.associate.training.dummy.DummyRepository
+import com.example.associate.training.dummy.Result
+import com.example.associate.training.dummy.data.DummyData
 import kotlinx.coroutines.launch
 
 class DummyUserViewModel : ViewModel() {

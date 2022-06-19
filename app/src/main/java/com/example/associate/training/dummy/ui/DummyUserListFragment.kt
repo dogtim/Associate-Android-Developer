@@ -1,4 +1,4 @@
-package com.example.associate.training.dummynetwork.ui
+package com.example.associate.training.dummy.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

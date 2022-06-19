@@ -21,7 +21,7 @@
 
         <variable
             name="dummydata"
-            type="com.example.associate.training.dummynetwork.data.DummyData" />
+            type="com.example.associate.training.dummy.data.DummyData" />
 
         <variable
             name="clickListener"
@@ -51,7 +51,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:src="@drawable/ic_action_name"/>
+                android:src="@drawable/ic_disconnect_placeholder"/>
 
             <TextView
                 android:id="@+id/dummy_data_name"

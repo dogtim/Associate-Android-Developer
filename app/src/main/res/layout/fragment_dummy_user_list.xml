@@ -22,7 +22,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.example.associate.training.dummynetwork.ui.DummyUserViewModel" />
+            type="com.example.associate.training.dummy.ui.DummyUserViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
