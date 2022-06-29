@@ -27,7 +27,7 @@ class RecycleViewTest {
      * replacement for [androidx.test.rule.ActivityTestRule].
      */
     @get:Rule
-    val activity = ActivityScenarioRule(LifecycleActivity::class.java)
+    val activity = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
     fun scrollToItemBelowFold_checkItsText() {
