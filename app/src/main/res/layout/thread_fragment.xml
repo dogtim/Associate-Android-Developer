@@ -8,7 +8,7 @@
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/bus_stop_header"
+        android:id="@+id/thread_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bus_stop_header"
