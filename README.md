@@ -40,9 +40,11 @@
 # Android Components
 - Navigation
 - ViewModel
-- Coroutine
-  - runBlocking
-  - lifecycleScope.launch
+- Asynchronous
+  - [Thread](https://www.oreilly.com/library/view/efficient-android-threading/9781449364120/ch04.html)
+  - Coroutine
+    - runBlocking
+    - lifecycleScope.launch
 - LiveData & FlowData
 - WorkManager
 - DataStore

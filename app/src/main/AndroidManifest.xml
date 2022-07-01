@@ -71,6 +71,13 @@
             android:name=".lifecycle.aware.SavedStateActivity"
             android:exported="true">
         </activity>
+
+        <activity
+            android:name=".async.ThreadActivity"
+            android:exported="true">
+        </activity>
+
+
     </application>
 
 </manifest>
