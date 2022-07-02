@@ -20,6 +20,7 @@ class ThreadFunFragment: Fragment() {
     private var _binding: ThreadFragmentBinding? = null
     private val binding get() = _binding!!
     private val pipeDemo = PipeDemo()
+    private val looperDemo = LooperDemo()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,12 +34,16 @@ class ThreadFunFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pipeDemo.onViewCreated(binding.threadEdit)
-
+        looperDemo.onCreate()
+        binding.looperButton.setOnClickListener {
+            looperDemo.onClick()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         pipeDemo.onDestroyView()
+        looperDemo.onDestroy()
         _binding = null
     }
 

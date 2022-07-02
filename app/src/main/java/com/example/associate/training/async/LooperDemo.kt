@@ -3,6 +3,7 @@ package com.example.associate.training.async
 import android.os.Handler
 import android.os.Looper
 import android.os.Message
+import android.util.Log
 
 class LooperDemo {
 
@@ -24,10 +25,6 @@ class LooperDemo {
         }
     }
 
-    fun doLongRunningOperation() {
-        // Add long running operation here.
-    }
-
     fun onDestroy() {
         mLooperThread.mHandler.getLooper().quit()
         // Terminate the background thread. The call to Looper.quit() stops the dispatching of messages and releases Looper.loop()
@@ -39,6 +36,9 @@ class LooperThread : Thread() {
 
     public lateinit var mHandler: Handler
 
+    fun doLongRunningOperation() {
+        Log.i("LooperThread", "doLongRunningOperation")
+    }
     override fun run() {
         Looper.prepare() // Associate a Looper—and implicitly a MessageQueue—with the thread.
         mHandler = object : Handler(Looper.getMainLooper()) {
@@ -49,7 +49,7 @@ class LooperThread : Thread() {
                 // Callback that runs when the message has been dispatched to the worker thread.
                 // It checks the what parameter and then executes the long operation.
                 if (msg.what == 0) {
-                    //doLongRunningOperation();
+                    doLongRunningOperation();
                 }
             }
         }

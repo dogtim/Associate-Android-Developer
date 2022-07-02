@@ -59,4 +59,6 @@
     <string name="location">Location</string>
     <string name="initial_name">No one</string>
     <string name="saved_in_vm">Saved in ViewModel: %s</string>
+
+    <string name="looper_event">Looper Event</string>
 </resources>
