@@ -67,6 +67,10 @@
         <activity
             android:name=".async.ThreadActivity"
             android:exported="true"></activity>
+        <activity
+            android:name=".XfermodesActivity"
+            android:exported="true"></activity>
+
     </application>
 
 </manifest>

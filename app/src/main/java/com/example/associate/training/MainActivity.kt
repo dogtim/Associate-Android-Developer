@@ -39,7 +39,8 @@ open class MainActivity : AppCompatActivity() {
             Entry("DummyActivity", DummyActivity::class.java),
             Entry("InventoryActivity", InventoryActivity::class.java),
             Entry("LifecycleActivity", LifecycleActivity::class.java),
-            Entry("ThreadActivity", ThreadActivity::class.java)
+            Entry("ThreadActivity", ThreadActivity::class.java),
+            Entry("XfermodesActivity", XfermodesActivity::class.java)
         )
     }
 }
