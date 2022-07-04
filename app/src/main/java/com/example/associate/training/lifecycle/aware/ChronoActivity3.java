@@ -21,7 +21,7 @@ public class ChronoActivity3 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.chrono_activity_3);
+        setContentView(R.layout.activity_chrono_3);
 
         mLiveDataTimerViewModel = new ViewModelProvider(this).get(LiveDataTimerViewModel.class);
 
