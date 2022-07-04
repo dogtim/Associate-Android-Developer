@@ -34,14 +34,14 @@ class LooperDemo {
 
 class LooperThread : Thread() {
 
-    public lateinit var mHandler: Handler
+    lateinit var mHandler: Handler
 
     fun doLongRunningOperation() {
         Log.i("LooperThread", "doLongRunningOperation")
     }
     override fun run() {
         Looper.prepare() // Associate a Looper—and implicitly a MessageQueue—with the thread.
-        mHandler = object : Handler(Looper.getMainLooper()) {
+        mHandler = object : Handler(Looper.myLooper()!!) {
             // Set up a Handler to be used by the producer for inserting messages in the queue.
             // Here we use the default constructor so it will bind to the Looper of the current thread.
             // Hence, this Handler can created only after Looper.prepare(), or it will have nothing to bind to.

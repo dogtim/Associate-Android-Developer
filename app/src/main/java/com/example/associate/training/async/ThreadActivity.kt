@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.associate.training.R
 import com.example.associate.training.databinding.ActivityBusScheduleBinding
+import com.example.associate.training.databinding.ActivityThreadBinding
 
 class ThreadActivity : AppCompatActivity() {
 
@@ -15,7 +16,7 @@ class ThreadActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = ActivityBusScheduleBinding.inflate(layoutInflater)
+        val binding = ActivityThreadBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
