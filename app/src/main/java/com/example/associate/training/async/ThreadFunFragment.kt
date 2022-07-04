@@ -2,22 +2,17 @@
 package com.example.associate.training.async
 
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.associate.training.databinding.ThreadFragmentBinding
-import java.io.IOException
-
+import com.example.associate.training.databinding.FragmentThreadBinding
 
 // This codes come from below website
 // https://www.oreilly.com/library/view/efficient-android-threading/9781449364120/ch04.html
 class ThreadFunFragment: Fragment() {
 
-    private var _binding: ThreadFragmentBinding? = null
+    private var _binding: FragmentThreadBinding? = null
     private val binding get() = _binding!!
     private val pipeDemo = PipeDemo()
     private val looperDemo = LooperDemo()
@@ -27,7 +22,7 @@ class ThreadFunFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = ThreadFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentThreadBinding.inflate(inflater, container, false)
         return binding.root
     }
 

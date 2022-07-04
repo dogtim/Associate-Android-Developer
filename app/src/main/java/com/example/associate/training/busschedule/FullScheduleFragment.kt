@@ -25,17 +25,14 @@ import androidx.lifecycle.coroutineScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.associate.training.databinding.FullScheduleFragmentBinding
-import com.example.associate.training.busschedule.BusScheduleApplication
-import com.example.associate.training.busschedule.BusStopAdapter
 import com.example.associate.training.busschedule.viewmodels.BusScheduleViewModel
 import com.example.associate.training.busschedule.viewmodels.BusScheduleViewModelFactory
-import kotlinx.coroutines.flow.collect
+import com.example.associate.training.databinding.FragmentFullScheduleBinding
 import kotlinx.coroutines.launch
 
 class FullScheduleFragment: Fragment() {
 
-    private var _binding: FullScheduleFragmentBinding? = null
+    private var _binding: FragmentFullScheduleBinding? = null
 
     private val binding get() = _binding!!
 
@@ -52,7 +49,7 @@ class FullScheduleFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FullScheduleFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentFullScheduleBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }

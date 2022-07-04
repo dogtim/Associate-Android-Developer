@@ -24,12 +24,9 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.associate.training.databinding.StopScheduleFragmentBinding
-import com.example.associate.training.busschedule.BusScheduleApplication
-import com.example.associate.training.busschedule.BusStopAdapter
 import com.example.associate.training.busschedule.viewmodels.BusScheduleViewModel
 import com.example.associate.training.busschedule.viewmodels.BusScheduleViewModelFactory
-import kotlinx.coroutines.flow.collect
+import com.example.associate.training.databinding.FragmentStopScheduleBinding
 import kotlinx.coroutines.launch
 
 class StopScheduleFragment: Fragment() {
@@ -38,7 +35,7 @@ class StopScheduleFragment: Fragment() {
         var STOP_NAME = "stopName"
     }
 
-    private var _binding: StopScheduleFragmentBinding? = null
+    private var _binding: FragmentStopScheduleBinding? = null
 
     private val binding get() = _binding!!
 
@@ -65,7 +62,7 @@ class StopScheduleFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = StopScheduleFragmentBinding.inflate(inflater, container, false)
+        _binding = FragmentStopScheduleBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
     }
