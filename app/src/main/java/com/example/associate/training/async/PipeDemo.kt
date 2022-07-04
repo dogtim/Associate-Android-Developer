@@ -9,14 +9,14 @@ import java.io.PipedReader
 import java.io.PipedWriter
 
 class PipeDemo {
-    private var r: PipedReader = PipedReader()
-    private var w: PipedWriter = PipedWriter()
+    private var reader: PipedReader = PipedReader()
+    private var writer: PipedWriter = PipedWriter()
     private var workerThread: Thread? = null
 
     fun onViewCreated(threadEdit: AppCompatEditText) {
 
         try {
-            w.connect(r)
+            writer.connect(reader)
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -35,7 +35,7 @@ class PipeDemo {
                     // Only handle addition of characters
                     Log.d("Dogtim", "charSequence = $charSequence")
                     if (count > before) {
-                        w.write(charSequence.subSequence(before, count).toString())
+                        writer.write(charSequence.subSequence(before, count).toString())
                     }
                 } catch (e: IOException) {
                     e.printStackTrace()
@@ -45,35 +45,31 @@ class PipeDemo {
             override fun afterTextChanged(editable: Editable) {}
         })
 
-
-        workerThread = Thread(TextHandlerTask(r))
+        workerThread = Thread(TextHandlerTask(reader))
         workerThread!!.start()
     }
 
     fun onDestroyView() {
         workerThread!!.interrupt()
         try {
-            r.close()
-            w.close()
+            reader.close()
+            writer.close()
         } catch (e: IOException) {
         }
     }
 }
+
 private class TextHandlerTask(private val reader: PipedReader) : Runnable {
     override fun run() {
-        Log.d("Dogtim", "Pre thread")
-        //while (Thread.currentThread().isInterrupted) {
-        Log.d("Dogtim", "while loop thread")
         try {
             var i: Int
             while (reader.read().also { i = it } != -1) {
                 val c = i.toChar()
                 //ADD TEXT PROCESSING LOGIC HERE
-                Log.d("Dogtim", "char = $c")
+                Log.d(this::class.simpleName, "char = $c")
             }
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        //}
     }
 }
