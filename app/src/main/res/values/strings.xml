@@ -67,5 +67,6 @@
 
     <string name="one_time">One Time</string>
     <string name="periodic">Periodic</string>
+    <string name="fake_periodic">Fake Periodic</string>
 
 </resources>

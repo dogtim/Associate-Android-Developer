@@ -21,4 +21,10 @@
         android:text="@string/periodic"
         />
 
+    <Button
+        android:id="@+id/fake_periodic_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fake_periodic"
+        />
 </LinearLayout>

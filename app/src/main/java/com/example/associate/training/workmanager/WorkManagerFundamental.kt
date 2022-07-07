@@ -57,6 +57,11 @@ open class WorkManagerFundamental : AppCompatActivity() {
             val periodWorker = PeriodicWorkMediator()
             periodWorker.trigger(this)
         }
+
+        binding.fakePeriodicButton.setOnClickListener {
+            val fakePeriodWorker = FakePeriodicWorkMediator()
+            fakePeriodWorker.trigger(this)
+        }
     }
 }
 
