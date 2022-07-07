@@ -36,15 +36,6 @@ fun bindRecyclerView(recyclerView: RecyclerView, data: List<Amphibian>?) {
 }
 
 /**
- * Updates the data shown in the [RecyclerView]
- */
-@BindingAdapter("userListData")
-fun bindRecyclerView2(recyclerView: RecyclerView, data: List<DummyData>?) {
-    val adapter = recyclerView.adapter as DummyUserListAdapter
-    adapter.submitList(data)
-}
-
-/**
  * This binding adapter displays the [AmphibianApiStatus] of the network request in an image view.
  * When the request is loading, it displays a loading_animation.  If the request has an error, it
  * displays a broken image to reflect the connection error.  When the request is finished, it
