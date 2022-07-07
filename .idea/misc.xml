@@ -9,13 +9,14 @@
         <entry key="app/src/main/res/drawable/ic_linear_layout.xml" value="0.172" />
         <entry key="app/src/main/res/drawable/loading_img.xml" value="0.172" />
         <entry key="app/src/main/res/layout/activity_amphibian.xml" value="0.32135416666666666" />
-        <entry key="app/src/main/res/layout/activity_blur.xml" value="0.16302083333333334" />
+        <entry key="app/src/main/res/layout/activity_blur.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_bus_schedule.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/activity_dummy.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/activity_inventory.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/activity_thread.xml" value="0.259963768115942" />
         <entry key="app/src/main/res/layout/activity_word.xml" value="0.16302083333333334" />
+        <entry key="app/src/main/res/layout/activity_work_manager.xml" value="0.10260416666666666" />
         <entry key="app/src/main/res/layout/bus_stop_item.xml" value="0.16302083333333334" />
         <entry key="app/src/main/res/layout/card_view_design.xml" value="0.32135416666666666" />
         <entry key="app/src/main/res/layout/card_view_timeline.xml" value="0.32135416666666666" />

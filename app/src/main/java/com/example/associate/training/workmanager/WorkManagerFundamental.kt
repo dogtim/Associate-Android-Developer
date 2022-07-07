@@ -19,16 +19,15 @@ import com.example.associate.training.databinding.ActivityMainBinding
 import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 import com.example.associate.training.R
+import com.example.associate.training.databinding.ActivityWorkManagerBinding
 
 open class WorkManagerFundamental : AppCompatActivity() {
-    private lateinit var adapter: MainEntryAdapter
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityWorkManagerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityWorkManagerBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupAdapter()
 
         // You must create the notification channel before posting any notifications on Android 8.0 and higher,
         // you should execute this code as soon as your app starts
@@ -44,26 +43,20 @@ open class WorkManagerFundamental : AppCompatActivity() {
                 getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             notificationManager.createNotificationChannel(channel)
         }
-        // scheduleOneTimeNotification(5000)
 
-        // WorkManager is not about executing at exact intervals. If that is your requirement, you’re looking at the wrong API.
-        // schedulePeriodicNotifications()
-        // var periodicWorkMediator = PeriodicWorkMediator()
-        // periodicWorkMediator.trigger(context = this)
+        setupListeners()
     }
 
-    private fun setupAdapter() {
-        adapter = MainEntryAdapter(getList())
-        binding.tutorsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
-        binding.tutorsRecyclerView.adapter = adapter
-    }
+    private fun setupListeners() {
+        binding.oneTimeButton.setOnClickListener {
+            val oneTimeWorker = OneTimeWorkMediator()
+            oneTimeWorker.trigger(this, 3000)
+        }
 
-    open fun getList(): List<Entry> {
-        return listOf(
-            Entry("WorkManager", WorkManagerActivity::class.java),
-            Entry("ROOM Database \n sql", BusScheduleActivity::class.java)
-        )
+        binding.periodicButton.setOnClickListener {
+            val periodWorker = PeriodicWorkMediator()
+            periodWorker.trigger(this)
+        }
     }
-
 }
 

@@ -17,21 +17,8 @@ import kotlin.random.Random
  */
 class OneTimeWorkMediator {
 
-    fun trigger(context: Context) {
+    fun trigger(context: Context, initialDelay: Long) {
 
-        val periodicWork = PeriodicWorkRequestBuilder<PeriodicScheduleWorker>(
-            15, TimeUnit.MINUTES
-        ).addTag("WORK_TAG").build()
-
-        WorkManager.getInstance(context)
-            .enqueueUniquePeriodicWork(
-                "WORK_NAME",
-                ExistingPeriodicWorkPolicy.KEEP,
-                periodicWork
-            )
-    }
-
-    fun scheduleOneTimeNotification(context: Context, initialDelay: Long) {
         val work =
             OneTimeWorkRequestBuilder<OneTimeScheduleWorker>()
                 .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
