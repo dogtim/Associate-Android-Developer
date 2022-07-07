@@ -36,43 +36,47 @@
         </activity>
         <activity
             android:name=".workmanager.BlurWorkManagerActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".busschedule.BusScheduleActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".amphibian.AmphibianActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".word.WordActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".inventory.InventoryActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".dummy.DummyActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".lifecycle.LifecycleActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".lifecycle.aware.ChronoActivity3"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".lifecycle.aware.LocationActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".lifecycle.aware.SavedStateActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".async.ThreadActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".XfermodesActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
         <activity
             android:name=".workmanager.WorkManagerActivity"
-            android:exported="true"></activity>
+            android:exported="true"/>
+
+        <activity
+            android:name=".workmanager.WorkManagerFundamental"
+            android:exported="true"/>
 
     </application>
 

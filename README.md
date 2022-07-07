@@ -82,3 +82,6 @@
   - Copy and paste the JSON text to [jsonFormatter online website](https://jsonformatter.curiousconcept.com/#)
   - Copy and paste the beautified JSON text to [json2KT](https://json2kt.com/)
   - Download the data class
+- How to write formatting comment in codes?
+  - [KDoc and Dokka](https://kotlinlang.org/docs/kotlin-doc.html#module-and-package-documentation)
+  - [Markdown](https://daringfireball.net/projects/markdown/syntax)

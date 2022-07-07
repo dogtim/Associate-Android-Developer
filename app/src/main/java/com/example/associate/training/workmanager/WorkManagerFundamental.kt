@@ -45,7 +45,11 @@ open class WorkManagerFundamental : AppCompatActivity() {
             notificationManager.createNotificationChannel(channel)
         }
         // scheduleOneTimeNotification(5000)
+
+        // WorkManager is not about executing at exact intervals. If that is your requirement, you’re looking at the wrong API.
         // schedulePeriodicNotifications()
+        // var periodicWorkMediator = PeriodicWorkMediator()
+        // periodicWorkMediator.trigger(context = this)
     }
 
     private fun setupAdapter() {
@@ -61,49 +65,5 @@ open class WorkManagerFundamental : AppCompatActivity() {
         )
     }
 
-    fun scheduleOneTimeNotification(initialDelay: Long) {
-        val work =
-            OneTimeWorkRequestBuilder<OneTimeScheduleWorker>()
-                .setInitialDelay(initialDelay, TimeUnit.MILLISECONDS)
-                .addTag("WORK_TAG")
-                .build()
-
-        WorkManager.getInstance(this).enqueue(work)
-    }
-
-    fun schedulePeriodicNotifications() {
-
-        val periodicWork = PeriodicWorkRequestBuilder<OneTimeScheduleWorker>(
-            15, TimeUnit.MINUTES
-        ).addTag("WORK_TAG").build()
-
-        WorkManager.getInstance(this)
-            .enqueueUniquePeriodicWork(
-                "WORK_NAME",
-                ExistingPeriodicWorkPolicy.KEEP,
-                periodicWork
-            )
-    }
 }
 
-class OneTimeScheduleWorker(
-    val context: Context,
-    workerParams: WorkerParameters
-) : Worker(context, workerParams) {
-
-    override fun doWork(): Result {
-        Log.i("dogtim", "doWork")
-        val builder = NotificationCompat.Builder(context, CHANNEL_ID)
-            .setSmallIcon(R.drawable.android_cupcake)
-            .setContentTitle("Scheduled notification")
-            .setContentText("Hello from one-time worker!")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-        with(NotificationManagerCompat.from(context)) {
-            notify(Random.nextInt(), builder.build())
-        }
-
-        return Result.retry()
-    }
-
-}

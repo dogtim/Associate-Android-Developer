@@ -10,7 +10,7 @@ class WorkManagerActivity : MainActivity() {
 
     override fun getList(): List<Entry> {
         return listOf(
-            Entry("Fundamental", LocationActivity::class.java),
+            Entry("Fundamental", WorkManagerFundamental::class.java),
             Entry("Blur Image", BlurWorkManagerActivity::class.java)
         )
     }
