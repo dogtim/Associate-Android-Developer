@@ -11,3 +11,7 @@ For deep diving to learn and understand coroutine, I should pick up this one
 * **Lightweight**: Coil adds ~1500 methods to your APK (for apps that already use OkHttp and Coroutines), which is comparable to Picasso and significantly less than Glide and Fresco.
 * **Easy to use**: Coil's API leverages Kotlin's language features for simplicity and minimal boilerplate.
 * **Modern**: Coil is Kotlin-first and uses modern libraries including Coroutines, OkHttp, Okio, and AndroidX Lifecycles.
+
+# Why the Service might be killed in different timing from a variety of devices?
+Please refer to [dontkillmyapp](https://dontkillmyapp.com/)
+It provides a list which OEM is the killer for service, I guess this way could protect and remain the OEM's main bundle APP

@@ -11,7 +11,7 @@ import com.example.associate.training.dummy.DummyActivity
 import com.example.associate.training.inventory.InventoryActivity
 import com.example.associate.training.lifecycle.LifecycleActivity
 import com.example.associate.training.word.WordActivity
-import com.example.associate.training.workmanager.BlurWorkManagerActivity
+import com.example.associate.training.workmanager.WorkManagerActivity
 
 open class MainActivity : AppCompatActivity() {
     private lateinit var adapter: MainEntryAdapter
@@ -32,7 +32,7 @@ open class MainActivity : AppCompatActivity() {
 
     open fun getList(): List<Entry> {
         return listOf(
-            Entry("WorkManager", BlurWorkManagerActivity::class.java),
+            Entry("WorkManager", WorkManagerActivity::class.java),
             Entry("ROOM Database \n sql", BusScheduleActivity::class.java),
             Entry("Amphibian \n Retrofit, Moshi, DataBinding", AmphibianActivity::class.java),
             Entry("WordActivity", WordActivity::class.java),
