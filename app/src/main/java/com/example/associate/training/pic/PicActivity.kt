@@ -3,18 +3,33 @@ package com.example.associate.training.pic
 import android.content.Context
 import android.graphics.*
 import android.os.Bundle
+import android.util.AttributeSet
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.example.associate.training.R
 
 class PicActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(CustomView(this))
+        setContentView(R.layout.activity_pic)
+        // setContentView(CustomView(this))
     }
 }
 
-private class CustomView(context: Context?) : View(context) {
+
+class CustomView @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
+) : View(context, attrs, defStyleAttr) {
+    private val TAG = this::class.simpleName
+
+    init {
+        Log.d(TAG, "init")
+    }
+
     private val mSrcB: Bitmap
     private val mDstB: Bitmap
     private val mBG // background checker-board pattern
@@ -44,6 +59,7 @@ private class CustomView(context: Context?) : View(context) {
     }
 
     override fun onDraw(canvas: Canvas) {
+        Log.d(TAG, this::onDraw.name)
         canvas.drawColor(Color.WHITE)
         val labelP = Paint(Paint.ANTI_ALIAS_FLAG)
         labelP.setTextAlign(Paint.Align.CENTER)
