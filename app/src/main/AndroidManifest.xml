@@ -78,6 +78,10 @@
             android:name=".workmanager.WorkManagerFundamental"
             android:exported="true"/>
 
+        <activity
+            android:name=".pic.PicActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
