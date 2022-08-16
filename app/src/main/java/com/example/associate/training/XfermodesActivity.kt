@@ -52,7 +52,8 @@ class XfermodesActivity : AppCompatActivity() {
             canvas.translate(15F, 35F)
             var x = 0f
             var y = 0f
-            for (i in sModes.indices) {
+            var index = 0
+            for (entry in map.entries) {
                 // draw the border
                 paint.style = Paint.Style.STROKE
                 paint.shader = null
@@ -68,21 +69,22 @@ class XfermodesActivity : AppCompatActivity() {
                 val sc: Int = canvas.saveLayer(x, y, x + W, y + H, null)
                 canvas.translate(x, y)
                 canvas.drawBitmap(dstBitmap, 0f, 0f, paint)
-                paint.xfermode = sModes[i]
+                paint.xfermode = entry.key
                 canvas.drawBitmap(srcBitmap, 0f, 0f, paint)
                 paint.xfermode = null
                 canvas.restoreToCount(sc)
                 // draw the label
                 canvas.drawText(
-                    sLabels[i],
+                    entry.value,
                     x + W / 2, y - labelP.textSize / 2, labelP
                 )
                 x += W + 10
                 // wrap around when we've drawn enough for one row
-                if (i % ROW_MAX == ROW_MAX - 1) {
+                if (index % ROW_MAX == ROW_MAX - 1) {
                     x = 0f
                     y += H + 30
                 }
+                index += 1
             }
         }
 
@@ -90,31 +92,24 @@ class XfermodesActivity : AppCompatActivity() {
             private const val W = 64
             private const val H = 64
             private const val ROW_MAX = 4 // number of samples per row
-            private val sModes = arrayOf<Xfermode>(
-                PorterDuffXfermode(PorterDuff.Mode.CLEAR),
-                PorterDuffXfermode(PorterDuff.Mode.SRC),
-                PorterDuffXfermode(PorterDuff.Mode.DST),
-                PorterDuffXfermode(PorterDuff.Mode.SRC_OVER),
-                PorterDuffXfermode(PorterDuff.Mode.DST_OVER),
-                PorterDuffXfermode(PorterDuff.Mode.SRC_IN),
-                PorterDuffXfermode(PorterDuff.Mode.DST_IN),
-                PorterDuffXfermode(PorterDuff.Mode.SRC_OUT),
-                PorterDuffXfermode(PorterDuff.Mode.DST_OUT),
-                PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP),
-                PorterDuffXfermode(PorterDuff.Mode.DST_ATOP),
-                PorterDuffXfermode(PorterDuff.Mode.XOR),
-                PorterDuffXfermode(PorterDuff.Mode.DARKEN),
-                PorterDuffXfermode(PorterDuff.Mode.LIGHTEN),
-                PorterDuffXfermode(PorterDuff.Mode.MULTIPLY),
-                PorterDuffXfermode(PorterDuff.Mode.SCREEN)
-            )
+            private val map = mapOf(
+                PorterDuffXfermode(PorterDuff.Mode.CLEAR) to "Clear",
+                PorterDuffXfermode(PorterDuff.Mode.SRC) to "SRC",
+                PorterDuffXfermode(PorterDuff.Mode.DST) to "DST",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_OVER) to "SRC_OVER",
+                PorterDuffXfermode(PorterDuff.Mode.DST_OVER) to "DST_OVER",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_IN) to "SRC_IN",
 
-            private val sLabels = arrayOf(
-                "Clear", "Src", "Dst", "SrcOver",
-                "DstOver", "SrcIn", "DstIn", "SrcOut",
-                "DstOut", "SrcATop", "DstATop", "Xor",
-                "Darken", "Lighten", "Multiply", "Screen"
-            )
+                PorterDuffXfermode(PorterDuff.Mode.DST_IN) to "DST_IN",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_OUT) to "SRC_OUT",
+                PorterDuffXfermode(PorterDuff.Mode.DST_OUT) to "DST_OUT",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP) to "SRC_ATOP",
+                PorterDuffXfermode(PorterDuff.Mode.DST_ATOP) to "DST_ATOP",
+                PorterDuffXfermode(PorterDuff.Mode.XOR) to "XOR",
+                PorterDuffXfermode(PorterDuff.Mode.DARKEN) to "DARKEN",
+                PorterDuffXfermode(PorterDuff.Mode.LIGHTEN) to "LIGHTEN",
+                PorterDuffXfermode(PorterDuff.Mode.MULTIPLY) to "MULTIPLY",
+                PorterDuffXfermode(PorterDuff.Mode.SCREEN) to "SCREEN")
         }
 
         init {
