@@ -42,7 +42,7 @@ open class MainActivity : AppCompatActivity() {
             Entry("InventoryActivity", InventoryActivity::class.java),
             Entry("LifecycleActivity", LifecycleActivity::class.java),
             Entry("ThreadActivity", ThreadActivity::class.java),
-            Entry("XfermodesActivity", XfermodesActivity::class.java)
+            Entry("CanvasActivity", CanvasActivity::class.java)
         )
     }
 }

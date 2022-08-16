@@ -68,7 +68,7 @@
             android:name=".async.ThreadActivity"
             android:exported="true"/>
         <activity
-            android:name=".XfermodesActivity"
+            android:name=".CanvasActivity"
             android:exported="true"/>
         <activity
             android:name=".workmanager.WorkManagerActivity"
