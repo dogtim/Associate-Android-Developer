@@ -27,7 +27,7 @@ class XfermodesActivity : AppCompatActivity() {
             val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
             val c = Canvas(bm)
             val p = Paint(Paint.ANTI_ALIAS_FLAG)
-            p.color = -0x33bc
+            p.color = Color.rgb(215, 0, 77)
             c.drawOval(RectF(0F, 0F, (w * 3 / 4).toFloat(), (h * 3 / 4).toFloat()), p)
             return bm
         }
@@ -37,7 +37,7 @@ class XfermodesActivity : AppCompatActivity() {
             val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
             val c = Canvas(bm)
             val p = Paint(Paint.ANTI_ALIAS_FLAG)
-            p.color = -0x995501
+            p.color = Color.rgb(30, 129, 240)
             c.drawRect(
                 (w / 3).toFloat(), (h / 3).toFloat(), (w * 19 / 20).toFloat(),
                 (h * 19 / 20).toFloat(), p
@@ -104,23 +104,24 @@ class XfermodesActivity : AppCompatActivity() {
         companion object {
             private const val ROW_MAX = 4 // number of samples per row
             private val map = mapOf(
+                PorterDuffXfermode(PorterDuff.Mode.ADD) to "ADD",
                 PorterDuffXfermode(PorterDuff.Mode.CLEAR) to "Clear",
-                PorterDuffXfermode(PorterDuff.Mode.SRC) to "SRC",
-                PorterDuffXfermode(PorterDuff.Mode.DST) to "DST",
-                PorterDuffXfermode(PorterDuff.Mode.SRC_OVER) to "SRC_OVER",
-                PorterDuffXfermode(PorterDuff.Mode.DST_OVER) to "DST_OVER",
-                PorterDuffXfermode(PorterDuff.Mode.SRC_IN) to "SRC_IN",
-
-                PorterDuffXfermode(PorterDuff.Mode.DST_IN) to "DST_IN",
-                PorterDuffXfermode(PorterDuff.Mode.SRC_OUT) to "SRC_OUT",
-                PorterDuffXfermode(PorterDuff.Mode.DST_OUT) to "DST_OUT",
-                PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP) to "SRC_ATOP",
-                PorterDuffXfermode(PorterDuff.Mode.DST_ATOP) to "DST_ATOP",
-                PorterDuffXfermode(PorterDuff.Mode.XOR) to "XOR",
                 PorterDuffXfermode(PorterDuff.Mode.DARKEN) to "DARKEN",
+                PorterDuffXfermode(PorterDuff.Mode.DST) to "DST",
+                PorterDuffXfermode(PorterDuff.Mode.DST_ATOP) to "DST_ATOP",
+                PorterDuffXfermode(PorterDuff.Mode.DST_IN) to "DST_IN",
+                PorterDuffXfermode(PorterDuff.Mode.DST_OUT) to "DST_OUT",
+                PorterDuffXfermode(PorterDuff.Mode.DST_OVER) to "DST_OVER",
                 PorterDuffXfermode(PorterDuff.Mode.LIGHTEN) to "LIGHTEN",
                 PorterDuffXfermode(PorterDuff.Mode.MULTIPLY) to "MULTIPLY",
-                PorterDuffXfermode(PorterDuff.Mode.SCREEN) to "SCREEN")
+                PorterDuffXfermode(PorterDuff.Mode.OVERLAY) to "OVERLAY",
+                PorterDuffXfermode(PorterDuff.Mode.SCREEN) to "SCREEN",
+                PorterDuffXfermode(PorterDuff.Mode.SRC) to "SRC",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_ATOP) to "SRC_ATOP",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_IN) to "SRC_IN",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_OUT) to "SRC_OUT",
+                PorterDuffXfermode(PorterDuff.Mode.SRC_OVER) to "SRC_OVER",
+                PorterDuffXfermode(PorterDuff.Mode.XOR) to "XOR")
         }
 
         init {
