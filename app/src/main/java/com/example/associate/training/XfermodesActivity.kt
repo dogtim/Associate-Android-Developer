@@ -15,8 +15,8 @@ class XfermodesActivity : AppCompatActivity() {
     }
 
     private class SampleView(context: Context?) : View(context) {
-        private val srcBitmap: Bitmap
-        private val dstBitmap: Bitmap
+        private var srcBitmap: Bitmap
+        private var dstBitmap: Bitmap
         // background checker-board pattern
         private val shader: Shader
         private val labelP = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -44,14 +44,27 @@ class XfermodesActivity : AppCompatActivity() {
             )
             return bm
         }
+        private var widthItem = 0
+        override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
+            // Calculate the radius from the smaller of the width and height.
+            widthItem = width / ROW_MAX
+            // Padding
+            widthItem -= 40
+
+            srcBitmap = makeSrc(widthItem, widthItem)
+            dstBitmap = makeDst(widthItem, widthItem)
+        }
 
         override fun onDraw(canvas: Canvas) {
             canvas.drawColor(Color.WHITE)
             labelP.textAlign = Paint.Align.CENTER
+            labelP.textSize = 18F
             paint.isFilterBitmap = false
             canvas.translate(15F, 35F)
             var x = 0f
             var y = 0f
+            val W = widthItem
+            val H = widthItem
             var index = 0
             for (entry in map.entries) {
                 // draw the border
@@ -78,7 +91,7 @@ class XfermodesActivity : AppCompatActivity() {
                     entry.value,
                     x + W / 2, y - labelP.textSize / 2, labelP
                 )
-                x += W + 10
+                x += W + 40
                 // wrap around when we've drawn enough for one row
                 if (index % ROW_MAX == ROW_MAX - 1) {
                     x = 0f
@@ -89,8 +102,6 @@ class XfermodesActivity : AppCompatActivity() {
         }
 
         companion object {
-            private const val W = 64
-            private const val H = 64
             private const val ROW_MAX = 4 // number of samples per row
             private val map = mapOf(
                 PorterDuffXfermode(PorterDuff.Mode.CLEAR) to "Clear",
@@ -113,8 +124,8 @@ class XfermodesActivity : AppCompatActivity() {
         }
 
         init {
-            srcBitmap = makeSrc(W, H)
-            dstBitmap = makeDst(W, H)
+            srcBitmap = makeSrc(64, 64)
+            dstBitmap = makeDst(64, 64)
             // make a ckeckerboard pattern
             val bm = Bitmap.createBitmap(
                 intArrayOf(
