@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.associate.training.amphibian.AmphibianActivity
 import com.example.associate.training.async.ThreadActivity
 import com.example.associate.training.busschedule.BusScheduleActivity
+import com.example.associate.training.canvas.CanvasActivity
 import com.example.associate.training.databinding.ActivityMainBinding
 import com.example.associate.training.dummy.DummyActivity
 import com.example.associate.training.inventory.InventoryActivity

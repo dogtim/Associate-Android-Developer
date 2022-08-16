@@ -1,4 +1,4 @@
-package com.example.associate.training
+package com.example.associate.training.canvas
 
 import android.content.Context
 import android.graphics.*
