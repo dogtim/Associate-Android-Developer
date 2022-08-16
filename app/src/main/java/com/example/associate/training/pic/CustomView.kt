@@ -14,6 +14,7 @@ import kotlin.math.cos
 import kotlin.math.min
 import kotlin.math.sin
 
+
 // Fan speeds with index of translatable string for label names
 private enum class FanSpeed(val label: Int) {
     OFF(R.string.fan_off),
@@ -37,7 +38,7 @@ class CustomView @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
-
+    private val TAG = this::class.simpleName
     private val paint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         // Paint styles used for rendering are initialized here. This
         // is a performance optimization, since onDraw() is called
@@ -59,6 +60,7 @@ class CustomView @JvmOverloads constructor(
     private val fanSpeedMaxColor:Int
 
     init {
+        Log.d(TAG, "init")
         isClickable = true
 
         val typedArray = context.obtainStyledAttributes(attrs,R.styleable.CustomView)
@@ -86,6 +88,7 @@ class CustomView @JvmOverloads constructor(
     }
 
     override fun performClick(): Boolean {
+        Log.d(TAG, this::performClick.name)
         // Give default click listeners priority and perform accessibility/autofill events.
         // Also calls onClickListener() to handle further subclass customizations.
         if (super.performClick()) return true
@@ -112,6 +115,7 @@ class CustomView @JvmOverloads constructor(
     override fun onSizeChanged(width: Int, height: Int, oldWidth: Int, oldHeight: Int) {
         // Calculate the radius from the smaller of the width and height.
         radius = (min(width, height) / 2.0 * 0.8).toFloat()
+        Log.d(TAG, this::onSizeChanged.name)
     }
 
     /**
@@ -123,6 +127,11 @@ class CustomView @JvmOverloads constructor(
      */
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        Log.d(TAG, this::onDraw.name)
+        // fan(canvas)
+        gradient(canvas)
+    }
+    private fun fan(canvas: Canvas) {
         // Set dial background color based on the selection.
         paint.color = when (fanSpeed) {
             FanSpeed.OFF -> Color.GRAY
@@ -144,6 +153,21 @@ class CustomView @JvmOverloads constructor(
             val label = resources.getString(i.label)
             canvas.drawText(label, pointPosition.x, pointPosition.y, paint)
         }
+    }
+
+    // https://blog.csdn.net/u010126792/article/details/85237085
+    private fun gradient(canvas: Canvas) {
+        val paint = Paint()
+        paint.color = Color.BLUE
+        paint.isAntiAlias = true
+        //paint.strokeWidth = 3F
+        paint.style = Paint.Style.STROKE
+        paint.textSize = 20F
+        val linearGradient =
+            LinearGradient(width.toFloat(), 400F, 0F, 0F, Color.RED, Color.GREEN, Shader.TileMode.CLAMP)
+        paint.shader = linearGradient
+        canvas.drawRect(0F, 0F, width.toFloat(), 400F, paint)
+        canvas.drawText("Hello Gradient Hello Gradient Hello Gradient Hello Gradient ",10F,  200F, paint)
     }
 
     /**
@@ -168,5 +192,20 @@ class CustomView @JvmOverloads constructor(
      */
     private fun updateContentDescription() {
         contentDescription = resources.getString(fanSpeed.label)
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        Log.d(TAG, this::onAttachedToWindow.name)
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        Log.d(TAG, this::onDetachedFromWindow.name)
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        Log.d(TAG, this::onMeasure.name)
     }
 }
