@@ -9,7 +9,7 @@ class CanvasActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // setContentView(XfersModeView(this))
-        setContentView(SaveRestoreCanvasView(this))
+        setContentView(SaveLayerView(this))
     }
 
 }
