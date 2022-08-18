@@ -53,6 +53,7 @@ class CircularAvatarView @JvmOverloads constructor(context: Context?, attrs: Att
         paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
         canvas.drawBitmap(bitmap, rect, rect, paint)
         return output
+
     }
 
     init {

@@ -49,7 +49,3 @@ class MainEntryAdapter(private val entries: List<Entry>) :
         val textView: TextView = itemView.findViewById(R.id.textView)
     }
 }
-
-class DesignViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
-    val textView: TextView = itemView.findViewById(R.id.textView)
-}
