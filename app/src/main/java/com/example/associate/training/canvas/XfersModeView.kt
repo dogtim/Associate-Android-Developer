@@ -16,22 +16,27 @@ class XfersModeView(context: Context?) : View(context) {
     init {
         srcBitmap = makeSrc(64, 64)
         dstBitmap = makeDst(64, 64)
-        // make a ckeckerboard pattern
+        shader = makeShader()
+    }
+
+    // Make a ckeckerboard pattern
+    private fun makeShader(): BitmapShader {
         val bm = Bitmap.createBitmap(
             intArrayOf(
-                -0x1, -0x333334,
-                -0x333334, -0x1
+                0xFFFFFF, 0xBBBBBB,
+                0xBBBBBB, 0xFFFFFF
             ), 2, 2,
             Bitmap.Config.RGB_565
         )
-        shader = BitmapShader(
+        val shader = BitmapShader(
             bm,
             Shader.TileMode.REPEAT,
             Shader.TileMode.REPEAT
         )
         val m = Matrix()
-        m.setScale(6F, 6F)
+        m.setScale(15F, 15F)
         shader.setLocalMatrix(m)
+        return shader
     }
 
     // create a bitmap with a circle, used for the "dst" image
@@ -81,7 +86,7 @@ class XfersModeView(context: Context?) : View(context) {
         for (entry in map.entries) {
             // draw the border
             paint.style = Paint.Style.STROKE
-            paint.shader = null
+            paint.shader = shader
             canvas.drawRect(
                 x - 0.5f, y - 0.5f,
                 x + W + 0.5f, y + H + 0.5f, paint
