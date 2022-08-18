@@ -10,14 +10,12 @@ import androidx.appcompat.widget.AppCompatImageView
 // https://www.twle.cn/l/yufei/android/android-basic-canvas-savelayer.html
 class SaveRestoreCanvasView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
     AppCompatImageView(context!!, attrs) {
-    private val mBitmap: Bitmap?
+    private val bounds = RectF(0F, 0F, 400F, 400F)
+    private val mBitmap = BitmapFactory.decodeResource(resources, R.drawable.avatar_128x128)
     private val mPaint = Paint()
+
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        if (mBitmap == null) {
-            return
-        }
-        val bounds = RectF(0F, 0F, 400F, 400F)
         if (Build.VERSION.SDK_INT >= 21) canvas.saveLayer(bounds, mPaint) else canvas.saveLayer(
             bounds,
             mPaint,
@@ -31,9 +29,8 @@ class SaveRestoreCanvasView @JvmOverloads constructor(context: Context?, attrs: 
     }
 
     init {
-        mBitmap = BitmapFactory.decodeResource(resources, R.drawable.avatar_128x128)
         mPaint.style = Paint.Style.STROKE
         mPaint.flags = Paint.ANTI_ALIAS_FLAG
-        mPaint.isAntiAlias = true // 抗锯尺
+        mPaint.isAntiAlias = true
     }
 }

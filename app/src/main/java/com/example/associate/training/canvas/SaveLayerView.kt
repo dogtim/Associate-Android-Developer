@@ -9,6 +9,7 @@ import androidx.appcompat.widget.AppCompatImageView
 class SaveLayerView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
     AppCompatImageView(context!!, attrs) {
     private val paint = Paint()
+    private val rect = RectF(0F, 0F, 200F, 200F)
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
@@ -16,7 +17,6 @@ class SaveLayerView @JvmOverloads constructor(context: Context?, attrs: Attribut
         canvas.translate(10F, 10F)
         paint.color = Color.RED
         canvas.drawCircle(75F, 75F, 75F, paint)
-        val rect = RectF(0F, 0F, 200F, 200F)
         canvas.saveLayerAlpha(rect, 0x88)
         paint.color = Color.BLUE
         canvas.drawCircle(125F, 125F, 75F, paint)
