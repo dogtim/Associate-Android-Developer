@@ -35,7 +35,7 @@ class XfersModeView(context: Context?) : View(context) {
     }
 
     // create a bitmap with a circle, used for the "dst" image
-    fun makeDst(w: Int, h: Int): Bitmap {
+    private fun makeDst(w: Int, h: Int): Bitmap {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val c = Canvas(bm)
         val p = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -45,7 +45,7 @@ class XfersModeView(context: Context?) : View(context) {
     }
 
     // create a bitmap with a rect, used for the "src" image
-    fun makeSrc(w: Int, h: Int): Bitmap {
+    private fun makeSrc(w: Int, h: Int): Bitmap {
         val bm = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888)
         val c = Canvas(bm)
         val p = Paint(Paint.ANTI_ALIAS_FLAG)
