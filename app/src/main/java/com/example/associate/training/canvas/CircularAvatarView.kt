@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.widget.AppCompatImageView
 import com.example.associate.training.R
 
+
 // Try to draw a photo in a circular shape
 class CircularAvatarView @JvmOverloads constructor(context: Context?, attrs: AttributeSet? = null) :
     AppCompatImageView(context!!, attrs) {
@@ -31,11 +32,27 @@ class CircularAvatarView @JvmOverloads constructor(context: Context?, attrs: Att
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        val bitmap = cropCircle(avatarBitmap)
+        canvas.drawBitmap(bitmap, 200F, 200F, paint)
+    }
 
-        canvas.drawBitmap(avatarBitmap, 200F, 200F, paint)
-        paint.xfermode = xfermode
-        canvas.drawBitmap(circularBitmap, 200F, 200F, paint)
-
+    private fun cropCircle(bitmap: Bitmap): Bitmap {
+        val output = Bitmap.createBitmap(
+            bitmap.width,
+            bitmap.height, Bitmap.Config.ARGB_8888
+        )
+        val canvas = Canvas(output)
+        val paint = Paint()
+        val rect = Rect(0, 0, bitmap.width, bitmap.height)
+        paint.isAntiAlias = true
+        canvas.drawARGB(0, 0, 0, 0)
+        canvas.drawCircle(
+            (bitmap.width / 2).toFloat(), (bitmap.height / 2).toFloat(),
+            (bitmap.width / 2).toFloat(), paint
+        )
+        paint.xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+        canvas.drawBitmap(bitmap, rect, rect, paint)
+        return output
     }
 
     init {
