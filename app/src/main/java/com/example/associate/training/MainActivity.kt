@@ -34,6 +34,7 @@ open class MainActivity : AppCompatActivity() {
 
     open fun getList(): List<Entry> {
         return listOf(
+            Entry("CanvasActivity", CanvasActivity::class.java),
             Entry("ViewsActivity", PicActivity::class.java),
             Entry("WorkManager", WorkManagerActivity::class.java),
             Entry("ROOM Database \n sql", BusScheduleActivity::class.java),
@@ -42,8 +43,7 @@ open class MainActivity : AppCompatActivity() {
             Entry("DummyActivity", DummyActivity::class.java),
             Entry("InventoryActivity", InventoryActivity::class.java),
             Entry("LifecycleActivity", LifecycleActivity::class.java),
-            Entry("ThreadActivity", ThreadActivity::class.java),
-            Entry("CanvasActivity", CanvasActivity::class.java)
+            Entry("ThreadActivity", ThreadActivity::class.java)
         )
     }
 }
