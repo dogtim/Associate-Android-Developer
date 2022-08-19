@@ -36,26 +36,16 @@ class CanvasListFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = TestAdapter(getList(), activity as AppCompatActivity)
+        adapter = TestAdapter(CanvasViewType.values().toList(), activity as AppCompatActivity)
         binding.tutorsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
         binding.tutorsRecyclerView.adapter = adapter
     }
 
-    fun getList(): List<TestEntry> {
-        return listOf(
-            TestEntry("XfersModeView"),
-            TestEntry("CircularAvatarView"),
-            TestEntry("SaveLayerView"),
-            TestEntry("SaveRestoreCanvasView")
-        )
-
-    }
-
 }
 
-data class TestEntry(val name: String)
+enum class CanvasViewType { XFERS_MODE, CIRCULAR_AVATAR, SAVE_LAYER, SAVE_RESTORE }
 
-class TestAdapter(private val entries: List<TestEntry>, private val activity: AppCompatActivity) :
+class TestAdapter(private val entries: List<CanvasViewType>, private val activity: AppCompatActivity) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -69,7 +59,7 @@ class TestAdapter(private val entries: List<TestEntry>, private val activity: Ap
             val entry = entries[position]
             holder.textView.text = entry.name
             holder.itemView.setOnClickListener {
-                val bundle = bundleOf("selectId" to position)
+                val bundle = bundleOf(CanvasFragment.argumentOfViewType to entry.ordinal)
                 activity.supportFragmentManager.commit {
                     replace<CanvasFragment>(R.id.canvas_fragment_container, args = bundle)
                     addToBackStack(null)

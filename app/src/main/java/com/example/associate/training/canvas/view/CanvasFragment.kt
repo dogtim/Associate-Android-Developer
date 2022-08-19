@@ -12,22 +12,23 @@ import com.example.associate.training.canvas.XfersModeView
 
 class CanvasFragment : Fragment() {
 
+    companion object {
+        const val argumentOfViewType = "selectId"
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return arguments?.let {
-            when(it.getInt("selectId")) {
-                0 -> XfersModeView(context)
-                1 -> CircularAvatarView(context)
-                2 -> SaveLayerView(context)
-                3 -> SaveRestoreCanvasView(context)
-                else -> {
-                    XfersModeView(context)
-                }
+            val type = it.getInt(argumentOfViewType)
+            return when(CanvasViewType.values()[type]) {
+                CanvasViewType.XFERS_MODE -> XfersModeView(context)
+                CanvasViewType.CIRCULAR_AVATAR -> CircularAvatarView(context)
+                CanvasViewType.SAVE_LAYER -> SaveLayerView(context)
+                CanvasViewType.SAVE_RESTORE -> SaveRestoreCanvasView(context)
             }
         }
     }
-
 }
