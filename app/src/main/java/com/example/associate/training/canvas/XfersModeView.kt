@@ -4,6 +4,13 @@ import android.content.Context
 import android.graphics.*
 import android.view.View
 
+/**
+ * A View demo the Xfermode
+ *
+ * Give a checkerboard like to demo the different mode for two bitmaps(source & destination)
+ *
+ * @see <a href="https://developer.android.com/reference/android/graphics/PorterDuff.Mode">PorterDuff.Mode</a>
+ */
 class XfersModeView(context: Context?) : View(context) {
 
     private var srcBitmap: Bitmap

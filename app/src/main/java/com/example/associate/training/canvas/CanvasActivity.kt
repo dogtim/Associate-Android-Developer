@@ -1,6 +1,5 @@
 package com.example.associate.training.canvas
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,35 +10,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.add
 import androidx.fragment.app.commit
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.associate.training.Entry
-import com.example.associate.training.MainEntryAdapter
 import com.example.associate.training.R
-import com.example.associate.training.amphibian.AmphibianActivity
-import com.example.associate.training.async.ThreadActivity
-import com.example.associate.training.busschedule.BusScheduleActivity
 import com.example.associate.training.databinding.ActivityMainBinding
-import com.example.associate.training.databinding.FragmentWordListBinding
-import com.example.associate.training.dummy.DummyActivity
-import com.example.associate.training.inventory.InventoryActivity
-import com.example.associate.training.lifecycle.LifecycleActivity
-import com.example.associate.training.pic.PicActivity
-import com.example.associate.training.word.WordActivity
-import com.example.associate.training.word.WordAdapter
-import com.example.associate.training.word.WordListFragment
-import com.example.associate.training.workmanager.WorkManagerActivity
 
-// Please refer to https://developer.android.com/reference/android/graphics/PorterDuff.Mode
 class CanvasActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         createFragment()
-        // setContentView(XfersModeView(this))
-        // setContentView(CircularAvatarView(this))
-        // setContentView(SaveLayerView(this))
     }
 
     private fun createFragment() {
@@ -77,24 +57,21 @@ class CanvasListFragment : Fragment() {
         binding.tutorsRecyclerView.adapter = adapter
     }
 
-    fun getList(): List<Entry> {
+    fun getList(): List<TestEntry> {
         return listOf(
-            Entry("ViewsActivity", PicActivity::class.java),
-            Entry("WorkManager", WorkManagerActivity::class.java),
-            Entry("ROOM Database \n sql", BusScheduleActivity::class.java),
-            Entry("Amphibian \n Retrofit, Moshi, DataBinding", AmphibianActivity::class.java),
-            Entry("WordActivity", WordActivity::class.java),
-            Entry("DummyActivity", DummyActivity::class.java),
-            Entry("InventoryActivity", InventoryActivity::class.java),
-            Entry("LifecycleActivity", LifecycleActivity::class.java),
-            Entry("ThreadActivity", ThreadActivity::class.java),
-            Entry("CanvasActivity", CanvasActivity::class.java)
+            TestEntry("XfersModeView"),
+            TestEntry("CircularAvatarView"),
+            TestEntry("SaveLayerView"),
+            TestEntry("SaveRestoreCanvasView")
         )
+
     }
 
 }
 
-class TestAdapter(private val entries: List<Entry>, private val activity: AppCompatActivity) :
+data class TestEntry(val name: String)
+
+class TestAdapter(private val entries: List<TestEntry>, private val activity: AppCompatActivity) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -107,13 +84,13 @@ class TestAdapter(private val entries: List<Entry>, private val activity: AppCom
         if (holder is DesignViewHolder) {
             val entry = entries[position]
             holder.textView.text = entry.name
-
             holder.itemView.setOnClickListener {
 
-                activity.supportFragmentManager.commit {
-                    setReorderingAllowed(true)
-                    add<WordListTestFragment>(R.id.canvas_fragment_container)
-                }
+                val fragment = WordListTestFragment()
+                val bundle = Bundle()
+                bundle.putInt("selectId", position)
+                fragment.arguments = bundle
+                activity.supportFragmentManager.beginTransaction().replace(R.id.canvas_fragment_container, fragment).addToBackStack(null).commit()
             }
         }
 
@@ -135,9 +112,18 @@ class WordListTestFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
-        // Retrieve and inflate the layout for this fragment
-        return XfersModeView(context)
+    ): View? {
+        return arguments?.let {
+            when(it.getInt("selectId")) {
+                0 -> XfersModeView(context)
+                1 -> CircularAvatarView(context)
+                2 -> SaveLayerView(context)
+                3 -> SaveRestoreCanvasView(context)
+                else -> {
+                    XfersModeView(context)
+                }
+            }
+        }
     }
 
 }
