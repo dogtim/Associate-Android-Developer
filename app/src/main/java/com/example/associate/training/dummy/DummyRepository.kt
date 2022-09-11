@@ -16,7 +16,7 @@ sealed class Result<out R> {
 // Create the repository to fetch the dummy api, and build the response data structure
 // TODO: Implement the coroutine flow as https://github.com/TouhidApps/Kotlin-Coroutine-Example
 //
-class DummyRepository() {
+class DummyRepository {
     private val loginUrl = "https://dummyapi.io/data/v1/user?limit=10"
     private val appID = "62adc6ad2aa7570c08535305"
     // Function that makes the network request, blocking the current thread
