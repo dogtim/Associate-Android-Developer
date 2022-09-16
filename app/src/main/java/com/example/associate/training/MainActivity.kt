@@ -10,6 +10,7 @@ import com.example.associate.training.canvas.CanvasActivity
 import com.example.associate.training.databinding.ActivityMainBinding
 import com.example.associate.training.dummy.DummyActivity
 import com.example.associate.training.inventory.InventoryActivity
+import com.example.associate.training.koin.KoinActivity
 import com.example.associate.training.lifecycle.LifecycleActivity
 import com.example.associate.training.pic.PicActivity
 import com.example.associate.training.word.WordActivity
@@ -34,6 +35,7 @@ open class MainActivity : AppCompatActivity() {
 
     open fun getList(): List<Entry> {
         return listOf(
+            Entry("KoinActivity", KoinActivity::class.java),
             Entry("CanvasActivity", CanvasActivity::class.java),
             Entry("ViewsActivity", PicActivity::class.java),
             Entry("WorkManager", WorkManagerActivity::class.java),

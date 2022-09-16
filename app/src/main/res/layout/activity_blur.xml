@@ -42,7 +42,6 @@
             android:text="@string/blur_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-
         <RadioGroup
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

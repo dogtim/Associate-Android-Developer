@@ -77,6 +77,9 @@ dependencies {
     // LiveData
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
 
+    // Koin for Android
+    implementation "io.insert-koin:koin-android:3.0.1"
+    
     // Testing-only dependencies
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.navigation:navigation-testing:2.4.2'
@@ -86,6 +89,9 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
 
+    // Koin Test
+    testImplementation "io.insert-koin:koin-test:3.0.1"
+    testImplementation "io.insert-koin:koin-test-junit4:3.0.1"
     androidTestImplementation 'androidx.navigation:navigation-testing:2.4.2'
 
     debugImplementation 'androidx.fragment:fragment-testing:1.4.1'
