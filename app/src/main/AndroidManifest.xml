@@ -82,6 +82,10 @@
             android:name=".pic.PicActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".misc.MiscActivity"
+            android:exported="true"/>
+
     </application>
 
 </manifest>
