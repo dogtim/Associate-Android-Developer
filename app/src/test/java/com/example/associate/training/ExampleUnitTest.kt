@@ -14,4 +14,10 @@ class ExampleUnitTest {
     fun addition_isCorrect() {
         assertEquals(4, 2 + 2)
     }
+
+    @Test
+    fun object_equal() {
+        val model = Model("123")
+        assertFalse(model.equals(null))
+    }
 }
