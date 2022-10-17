@@ -20,4 +20,22 @@ class ExampleUnitTest {
         val model = Model("123")
         assertFalse(model.equals(null))
     }
+
+    @Test
+    fun data_class_equal() {
+        val emp1 = EmployeeClass("Tim")
+        val emp2 = EmployeeClass("Tim")
+        assertFalse(emp1 == emp2)
+        // "equals" = "=="
+        assertFalse(emp1.equals(emp2))
+        assertFalse(emp1 === emp2)
+
+        val emp3 = EmployeeData("Tim")
+        val emp4 = EmployeeData("Tim")
+        assertTrue(emp3 == emp4)
+        assertFalse(emp3 === emp4)
+    }
 }
+
+class EmployeeClass (val name: String)
+data class EmployeeData (val name: String)
