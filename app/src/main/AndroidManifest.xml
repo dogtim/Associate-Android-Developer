@@ -89,6 +89,12 @@
         <activity
             android:name=".misc.MiscActivity"
             android:exported="true"/>
+
+        <activity
+            android:name=".views.ViewsActivity"
+            android:exported="true"/>
+
+
     </application>
 
 </manifest>
