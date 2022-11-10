@@ -1,26 +1,25 @@
 package com.example.associate.training.views
 
 import android.os.Bundle
-import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
+import androidx.fragment.app.add
+import androidx.fragment.app.commit
 import com.example.associate.training.R
-import com.example.associate.training.views.layout.ViewPagerAdapter
-import com.google.android.material.tabs.TabLayout
+import com.example.associate.training.views.fragment.ViewsFragment
 
 class ViewsActivity : AppCompatActivity() {
-    private lateinit var tabLayout: TabLayout
-    private lateinit var viewPager: ViewPager
-    private lateinit var viewPagerAdapter: ViewPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_view)
-        tabLayout = findViewById(R.id.tabs) as TabLayout
-        viewPager = findViewById(R.id.viewPager) as ViewPager
-        viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
-        viewPager.setAdapter(viewPagerAdapter)
-        tabLayout.setupWithViewPager(viewPager)
+        createFragment()
+    }
+
+    private fun createFragment() {
+        setContentView(R.layout.activity_canvas)
+        supportFragmentManager.commit {
+            setReorderingAllowed(true)
+            add<ViewsFragment>(R.id.canvas_fragment_container)
+        }
     }
 
 }
