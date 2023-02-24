@@ -2,6 +2,7 @@ package com.example.associate.training
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.associate.training.amphibian.AmphibianActivity
 import com.example.associate.training.async.ThreadActivity
@@ -33,6 +34,10 @@ open class MainActivity : AppCompatActivity() {
         adapter = MainEntryAdapter(getList())
         binding.tutorsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
         binding.tutorsRecyclerView.adapter = adapter
+
+        while (true) {
+            Log.i("Tim", "Could you find the infinite loop?")
+        }
     }
 
     open fun getList(): List<Entry> {
@@ -50,6 +55,6 @@ open class MainActivity : AppCompatActivity() {
             Entry("InventoryActivity", InventoryActivity::class.java),
             Entry("LifecycleActivity", LifecycleActivity::class.java),
             Entry("ThreadActivity", ThreadActivity::class.java)
-        )
+        ).toMutableList().toList()
     }
 }
