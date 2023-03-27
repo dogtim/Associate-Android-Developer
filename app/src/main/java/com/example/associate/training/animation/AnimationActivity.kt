@@ -3,6 +3,7 @@ package com.example.associate.training.animation
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.media.MediaCodec
@@ -23,14 +24,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
 import java.io.File
-import java.nio.ByteBuffer
 import java.util.*
 
-
 class AnimationActivity : AppCompatActivity() {
-    val DIR_RESOURCES = "resources/"
-    private var presentationTime = 0.0
-
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -91,9 +87,18 @@ class AnimationActivity : AppCompatActivity() {
         codec.release()
         muxer.stop()
         muxer.release()
-
     }
 
+    private fun renderBitmap(drawable: Int, surface: Surface,) {
+        val bitmap = BitmapFactory.decodeResource(resources, drawable)
+        // Resize the bitmap
+        val desiredWidth = 720
+        val desiredHeight = (bitmap.height.toFloat() / bitmap.width.toFloat() * desiredWidth).toInt()
+        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, desiredWidth, desiredHeight, true)
+        val canvas: Canvas = surface.lockCanvas(null)
+        canvas.drawBitmap(scaledBitmap, 0.0f, 0.0f, null)
+        surface.unlockCanvasAndPost(canvas)
+    }
     private fun getBitmapFromDrawable(
         drawable: Int,
         surface: Surface,
@@ -101,36 +106,26 @@ class AnimationActivity : AppCompatActivity() {
         encoder: MediaCodec,
         muxer: MediaMuxer
     ) {
-
         val DEQUEUE_TIMEOUT_USEC = 10000L
+        val videoDuration = 5 * 1000000L
         var startTime: Long = -1
+        var isEndOfStream = false
         while (true) {
-            val bitmap = BitmapFactory.decodeResource(resources, drawable)
-            val canvas: Canvas = surface.lockCanvas(null)
-            canvas.drawBitmap(bitmap, 0.0f, 0.0f, null)
-            surface.unlockCanvasAndPost(canvas)
+            renderBitmap(drawable, surface)
             val outputBufferIndex = encoder.dequeueOutputBuffer(mBufferInfo, DEQUEUE_TIMEOUT_USEC)
             val presentationTimeUs = mBufferInfo.presentationTimeUs
             if (startTime == -1L && presentationTimeUs > 0) {
-                Log.i("Tim", "startTime == -1L")
                 startTime = presentationTimeUs
-            } else if (startTime != -1L && presentationTimeUs - startTime > 10000000) {
-                Log.i("Tim", "stop encoding")
+            } else if (startTime != -1L && presentationTimeUs - startTime > videoDuration && !isEndOfStream) {
                 encoder.signalEndOfInputStream()
-                //break
+                isEndOfStream = true
             }
-            Log.i(
-                "Tim",
-                "mBufferInfo.presentationTimeUs - startTime ${(presentationTimeUs - startTime)})"
-            )
-            Log.i("Tim", "mBufferInfo.presentationTimeUs ${(presentationTimeUs / 1000000)}")
             if (outputBufferIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
                 Log.i("Tim", "no output available, spinning to await EOS")
                 //break
             } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
                 // startMediaMuxer()
                 Log.i("Tim", "start muxer")
-                Log.d("Tim", "codec.outputFormat: ${encoder.outputFormat} ")
                 videoTrackIndex = muxer.addTrack(encoder.outputFormat)
                 muxer.start()
             } else if (outputBufferIndex < 0) {
@@ -150,10 +145,6 @@ class AnimationActivity : AppCompatActivity() {
                     // adjust the ByteBuffer values to match BufferInfo
                     encodedDataBuffer.position(mBufferInfo.offset)
                     encodedDataBuffer.limit(mBufferInfo.offset + mBufferInfo.size)
-                    Log.i(
-                        "Tim",
-                        "write mBufferInfo.offset ${mBufferInfo.offset} mBufferInfo.size ${mBufferInfo.size}"
-                    )
                     muxer.writeSampleData(videoTrackIndex, encodedDataBuffer, mBufferInfo)
                 }
 
