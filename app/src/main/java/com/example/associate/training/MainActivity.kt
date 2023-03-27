@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.associate.training.amphibian.AmphibianActivity
+import com.example.associate.training.animation.AnimationActivity
 import com.example.associate.training.async.ThreadActivity
 import com.example.associate.training.busschedule.BusScheduleActivity
 import com.example.associate.training.canvas.CanvasActivity
@@ -37,6 +38,7 @@ open class MainActivity : AppCompatActivity() {
 
     open fun getList(): List<Entry> {
         return listOf(
+            Entry("AnimationActivity", AnimationActivity::class.java),
             Entry("KoinActivity", KoinActivity::class.java),
             Entry("ViewsActivity", ViewsActivity::class.java),
             Entry("MiscActivity", MiscActivity::class.java),
