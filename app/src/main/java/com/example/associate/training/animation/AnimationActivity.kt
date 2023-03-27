@@ -51,8 +51,9 @@ class AnimationActivity : AppCompatActivity() {
     // Encode the zoomIn animation for 5 durations
     private fun startEncoding() {
         val size = 720
-        val bitrate = 2000000
-        val format = MediaFormat.createVideoFormat("video/avc", size, size)
+        val bitrate = 3000000
+        val mime = "video/avc"
+        val format = MediaFormat.createVideoFormat(mime, size, size)
         format.setInteger(MediaFormat.KEY_BIT_RATE, bitrate)
         format.setInteger(MediaFormat.KEY_FRAME_RATE, 30)
         format.setInteger(
@@ -60,23 +61,18 @@ class AnimationActivity : AppCompatActivity() {
             MediaCodecInfo.CodecCapabilities.COLOR_FormatSurface
         )
         format.setInteger(MediaFormat.KEY_I_FRAME_INTERVAL, 1)
-        val codec = MediaCodec.createEncoderByType("video/avc")
+        val codec = MediaCodec.createEncoderByType(mime)
         codec.configure(format, null, null, MediaCodec.CONFIGURE_FLAG_ENCODE)
         val surface: Surface = codec.createInputSurface()
         codec.start()
 
         // Create MediaMuxer and add track
         val VIDEO_PATH = createTempFile()
-        if (VIDEO_PATH.exists()) {
-            VIDEO_PATH.delete()
-        }
-        VIDEO_PATH.createNewFile()
+
         val muxer = MediaMuxer(VIDEO_PATH.path, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
         val bufferInfo = MediaCodec.BufferInfo()
 
-        // Encode each PNG file
-        getBitmapFromDrawable(
-            R.drawable.android_cupcake,
+        startEncoding(
             surface,
             bufferInfo,
             codec,
@@ -89,7 +85,7 @@ class AnimationActivity : AppCompatActivity() {
         muxer.release()
     }
 
-    private fun renderBitmap(drawable: Int, surface: Surface,) {
+    private fun renderBitmap(drawable: Int, surface: Surface) {
         val bitmap = BitmapFactory.decodeResource(resources, drawable)
         // Resize the bitmap
         val desiredWidth = 720
@@ -99,8 +95,7 @@ class AnimationActivity : AppCompatActivity() {
         canvas.drawBitmap(scaledBitmap, 0.0f, 0.0f, null)
         surface.unlockCanvasAndPost(canvas)
     }
-    private fun getBitmapFromDrawable(
-        drawable: Int,
+    private fun startEncoding(
         surface: Surface,
         mBufferInfo: MediaCodec.BufferInfo,
         encoder: MediaCodec,
@@ -110,21 +105,26 @@ class AnimationActivity : AppCompatActivity() {
         val videoDuration = 5 * 1000000L
         var startTime: Long = -1
         var isEndOfStream = false
+        val drawableList = listOf(R.drawable.birthday, R.drawable.birthday_cakes, R.drawable.happy_birthday)
+        var index = 0
         while (true) {
-            renderBitmap(drawable, surface)
+            renderBitmap(drawableList[index], surface)
             val outputBufferIndex = encoder.dequeueOutputBuffer(mBufferInfo, DEQUEUE_TIMEOUT_USEC)
             val presentationTimeUs = mBufferInfo.presentationTimeUs
             if (startTime == -1L && presentationTimeUs > 0) {
                 startTime = presentationTimeUs
-            } else if (startTime != -1L && presentationTimeUs - startTime > videoDuration && !isEndOfStream) {
-                encoder.signalEndOfInputStream()
-                isEndOfStream = true
+            } else if (startTime != -1L) {
+                if (presentationTimeUs - startTime > videoDuration && !isEndOfStream) {
+                    encoder.signalEndOfInputStream()
+                    isEndOfStream = true
+                } else {
+                    index = (presentationTimeUs.toInt() / 1000000L).toInt() % drawableList.size
+                }
             }
             if (outputBufferIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
                 Log.i("Tim", "no output available, spinning to await EOS")
                 //break
             } else if (outputBufferIndex == MediaCodec.INFO_OUTPUT_FORMAT_CHANGED) {
-                // startMediaMuxer()
                 Log.i("Tim", "start muxer")
                 videoTrackIndex = muxer.addTrack(encoder.outputFormat)
                 muxer.start()
@@ -135,8 +135,6 @@ class AnimationActivity : AppCompatActivity() {
                     ?: throw RuntimeException("encoderOutputBuffer $outputBufferIndex was null")
 
                 if (mBufferInfo.flags and MediaCodec.BUFFER_FLAG_CODEC_CONFIG != 0) {
-                    // The codec config data was pulled out and fed to the muxer when we got
-                    // the INFO_OUTPUT_FORMAT_CHANGED status.  Ignore it.
                     Log.i("Tim", "ignoring BUFFER_FLAG_CODEC_CONFIG")
                     mBufferInfo.size = 0
                 }
@@ -152,38 +150,33 @@ class AnimationActivity : AppCompatActivity() {
 
                 if (mBufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) {
                     Log.i("Tim", "get EOS")
-                    break      // out of while
+                    break
                 }
             }
-
         }
     }
 
     private fun setListener() {
-        // Set click event for export_to_video
         findViewById<AppCompatButton>(R.id.export_to_video).setOnClickListener {
-            // Show toast
-
             CoroutineScope(IO).launch {
                 try {
                     startEncoding()
                 } catch (e: Exception) {
                     // Handle exception here
                 }
-
             }
-
         }
     }
 
     private fun createTempFile(): File {
-
         val file = File(getExternalFilesDir(Environment.DIRECTORY_MOVIES), "myvideo.mp4")
         Log.i("Tim", "file: ${file.absolutePath}")
+        if (file.exists()) {
+            file.delete()
+        }
         file.createNewFile()
         return file
     }
-
 
     private fun startAnimation() {
         val imageView: ImageView = findViewById(R.id.animation_img)
