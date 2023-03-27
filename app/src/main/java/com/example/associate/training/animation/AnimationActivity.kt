@@ -3,9 +3,7 @@ package com.example.associate.training.animation
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
 import android.animation.ValueAnimator
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
+import android.graphics.*
 import android.media.MediaCodec
 import android.media.MediaCodecInfo
 import android.media.MediaFormat
@@ -51,7 +49,7 @@ class AnimationActivity : AppCompatActivity() {
     // Encode the zoomIn animation for 5 durations
     private fun startEncoding() {
         val size = 720
-        val bitrate = 3000000
+        val bitrate = 2000000
         val mime = "video/avc"
         val format = MediaFormat.createVideoFormat(mime, size, size)
         format.setInteger(MediaFormat.KEY_BIT_RATE, bitrate)
@@ -72,12 +70,7 @@ class AnimationActivity : AppCompatActivity() {
         val muxer = MediaMuxer(VIDEO_PATH.path, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
         val bufferInfo = MediaCodec.BufferInfo()
 
-        startEncoding(
-            surface,
-            bufferInfo,
-            codec,
-            muxer
-        )
+        encode(surface, bufferInfo, codec, muxer, size)
         // Release resources
         codec.stop()
         codec.release()
@@ -85,21 +78,21 @@ class AnimationActivity : AppCompatActivity() {
         muxer.release()
     }
 
-    private fun renderBitmap(drawable: Int, surface: Surface) {
+    private fun renderBitmap(drawable: Int, surface: Surface, size: Int) {
         val bitmap = BitmapFactory.decodeResource(resources, drawable)
-        // Resize the bitmap
-        val desiredWidth = 720
-        val desiredHeight = (bitmap.height.toFloat() / bitmap.width.toFloat() * desiredWidth).toInt()
-        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, desiredWidth, desiredHeight, true)
+        val desiredHeight = (bitmap.height.toFloat() / bitmap.width.toFloat() * size).toInt()
+        val scaledBitmap = Bitmap.createScaledBitmap(bitmap, size, desiredHeight, true)
         val canvas: Canvas = surface.lockCanvas(null)
+        canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR)
         canvas.drawBitmap(scaledBitmap, 0.0f, 0.0f, null)
         surface.unlockCanvasAndPost(canvas)
     }
-    private fun startEncoding(
+    private fun encode(
         surface: Surface,
         mBufferInfo: MediaCodec.BufferInfo,
         encoder: MediaCodec,
-        muxer: MediaMuxer
+        muxer: MediaMuxer,
+        size: Int
     ) {
         val DEQUEUE_TIMEOUT_USEC = 10000L
         val videoDuration = 5 * 1000000L
@@ -108,7 +101,7 @@ class AnimationActivity : AppCompatActivity() {
         val drawableList = listOf(R.drawable.birthday, R.drawable.birthday_cakes, R.drawable.happy_birthday)
         var index = 0
         while (true) {
-            renderBitmap(drawableList[index], surface)
+            renderBitmap(drawableList[index], surface, size)
             val outputBufferIndex = encoder.dequeueOutputBuffer(mBufferInfo, DEQUEUE_TIMEOUT_USEC)
             val presentationTimeUs = mBufferInfo.presentationTimeUs
             if (startTime == -1L && presentationTimeUs > 0) {
@@ -118,7 +111,8 @@ class AnimationActivity : AppCompatActivity() {
                     encoder.signalEndOfInputStream()
                     isEndOfStream = true
                 } else {
-                    index = (presentationTimeUs.toInt() / 1000000L).toInt() % drawableList.size
+                    index = (presentationTimeUs / 1000000L).toInt() % drawableList.size
+                    Log.i("Tim", "index $index")
                 }
             }
             if (outputBufferIndex == MediaCodec.INFO_TRY_AGAIN_LATER) {
