@@ -54,7 +54,7 @@
             android:name=".dummy.DummyActivity"
             android:exported="true"/>
         <activity
-            android:name=".animation.AnimationActivity"
+            android:name=".media.MediaActivity"
             android:exported="true"/>
         <activity
             android:name=".lifecycle.LifecycleActivity"

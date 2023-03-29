@@ -1,4 +1,4 @@
-package com.example.associate.training.animation
+package com.example.associate.training.media
 
 import android.animation.ObjectAnimator
 import android.animation.PropertyValuesHolder
@@ -7,32 +7,24 @@ import android.graphics.*
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
-import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatButton
-import com.example.associate.training.R
-import com.example.associate.training.databinding.ActivityAnimationBinding
-import com.example.associate.training.databinding.ActivityMainBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
+import com.example.associate.training.databinding.ActivityMediaBinding
 import java.io.File
 import java.util.*
 
-class AnimationActivity : AppCompatActivity(), ContextCallback {
+class MediaActivity : AppCompatActivity(), ContextCallback {
 
-    private val viewModel: AnimationViewModel by viewModels()
-    private lateinit var binding: ActivityAnimationBinding
+    private val viewModel: MediaViewModel by viewModels()
+    private lateinit var binding: ActivityMediaBinding
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAnimationBinding.inflate(layoutInflater)
+        binding = ActivityMediaBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupViewModel()
         setListener()

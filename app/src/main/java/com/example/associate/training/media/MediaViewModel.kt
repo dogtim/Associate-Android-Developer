@@ -1,4 +1,4 @@
-package com.example.associate.training.animation
+package com.example.associate.training.media
 
 import android.graphics.*
 import android.media.MediaCodec
@@ -26,7 +26,7 @@ sealed class EncodingState {
     object Loading : EncodingState()
     object Complete : EncodingState()
 }
-class AnimationViewModel : ViewModel() {
+class MediaViewModel : ViewModel() {
     private val TAG = this::class.simpleName
     private var videoTrackIndex: Int = 0
     private var callback: ContextCallback? = null
