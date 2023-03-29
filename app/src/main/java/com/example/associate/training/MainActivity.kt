@@ -43,7 +43,7 @@ open class MainActivity : AppCompatActivity() {
             Entry("ViewsActivity", ViewsActivity::class.java),
             Entry("MiscActivity", MiscActivity::class.java),
             Entry("CanvasActivity", CanvasActivity::class.java),
-            Entry("ViewsActivity", PicActivity::class.java),
+            Entry("PicActivity", PicActivity::class.java),
             Entry("WorkManager", WorkManagerActivity::class.java),
             Entry("ROOM Database \n sql", BusScheduleActivity::class.java),
             Entry("Amphibian \n Retrofit, Moshi, DataBinding", AmphibianActivity::class.java),
