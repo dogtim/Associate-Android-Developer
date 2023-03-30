@@ -18,15 +18,6 @@ import org.koin.android.ext.android.inject
 import java.io.File
 import java.util.*
 
-class MediaViewModelFactory(private val height: Int, private val width: Int) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(MediaViewModel::class.java)) {
-            return MediaViewModel(height, width) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}
 class MediaActivity : AppCompatActivity(), ContextCallback {
 
     private lateinit var binding: ActivityMediaBinding

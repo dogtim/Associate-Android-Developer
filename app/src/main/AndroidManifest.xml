@@ -98,6 +98,10 @@
             android:name=".views.ViewsActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".compose.ComposeActivity"
+            android:exported="true"/>
+
 
     </application>
 

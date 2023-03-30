@@ -68,7 +68,7 @@ class WordAdapter(private val letterId: String, context: Context) :
             .inflate(R.layout.item_view, parent, false)
 
         // Setup custom accessibility delegate to set the text read
-        layout.accessibilityDelegate = Accessibility
+        // layout.accessibilityDelegate = Accessibility
 
         return WordViewHolder(layout)
     }
@@ -98,8 +98,8 @@ class WordAdapter(private val letterId: String, context: Context) :
     companion object Accessibility : View.AccessibilityDelegate() {
         @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
         override fun onInitializeAccessibilityNodeInfo(
-            host: View?,
-            info: AccessibilityNodeInfo?
+            host: View,
+            info: AccessibilityNodeInfo
         ) {
             super.onInitializeAccessibilityNodeInfo(host, info)
             // With `null` as the second argument to [AccessibilityAction], the

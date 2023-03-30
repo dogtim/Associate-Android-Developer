@@ -8,6 +8,7 @@ import com.example.associate.training.media.MediaActivity
 import com.example.associate.training.async.ThreadActivity
 import com.example.associate.training.busschedule.BusScheduleActivity
 import com.example.associate.training.canvas.CanvasActivity
+import com.example.associate.training.compose.ComposeActivity
 import com.example.associate.training.databinding.ActivityMainBinding
 import com.example.associate.training.dummy.DummyActivity
 import com.example.associate.training.inventory.InventoryActivity
@@ -38,6 +39,7 @@ open class MainActivity : AppCompatActivity() {
 
     open fun getList(): List<Entry> {
         return listOf(
+            Entry("ComposeActivity", ComposeActivity::class.java),
             Entry("AnimationActivity", MediaActivity::class.java),
             Entry("KoinActivity", KoinActivity::class.java),
             Entry("ViewsActivity", ViewsActivity::class.java),
