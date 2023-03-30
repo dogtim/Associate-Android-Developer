@@ -30,7 +30,7 @@ class MediaViewModelFactory(private val height: Int, private val width: Int) : V
 class MediaActivity : AppCompatActivity(), ContextCallback {
 
     private lateinit var binding: ActivityMediaBinding
-    private val viewModel: MediaViewModel by inject { parametersOf(720, 1280) }
+    val viewModel: MediaViewModel by inject { parametersOf(720, 1280) }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
