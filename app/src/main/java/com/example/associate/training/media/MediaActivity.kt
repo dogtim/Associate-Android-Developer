@@ -8,17 +8,29 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.widget.ImageView
-import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.example.associate.training.databinding.ActivityMediaBinding
+import org.koin.core.parameter.parametersOf
+import org.koin.android.ext.android.inject
 import java.io.File
 import java.util.*
 
+class MediaViewModelFactory(private val height: Int, private val width: Int) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+        if (modelClass.isAssignableFrom(MediaViewModel::class.java)) {
+            return MediaViewModel(height, width) as T
+        }
+        throw IllegalArgumentException("Unknown ViewModel class")
+    }
+}
 class MediaActivity : AppCompatActivity(), ContextCallback {
 
-    private val viewModel: MediaViewModel by viewModels()
     private lateinit var binding: ActivityMediaBinding
+    private val viewModel: MediaViewModel by inject { parametersOf(720, 1280) }
 
     @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +44,7 @@ class MediaActivity : AppCompatActivity(), ContextCallback {
     }
 
     private fun setupViewModel() {
+        // Use the ViewModelProvider to get an instance of MediaViewModel
         viewModel.setCallback(this)
         viewModel.state.observe(this) { state ->
             when (state) {

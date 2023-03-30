@@ -1,9 +1,7 @@
 package com.example.associate.training
 
-import android.util.Log
 import android.view.View
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.NoMatchingViewException
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.*
@@ -26,17 +24,17 @@ class MediaActivityTest {
     val activity = ActivityScenarioRule(MediaActivity::class.java)
 
     @Test
-    fun testEncodingCompleteToast() {
+    fun testEncoding() {
 
         val startTime = System.currentTimeMillis()
-        var textViewHasText = false
+        var clicked = false
         val progressIndicator = onView(withId(R.id.progress_indicator))
         val button = onView(withId(R.id.export_to_video))
-        while (!textViewHasText && System.currentTimeMillis() - startTime < 10000) {
+        while (!clicked && System.currentTimeMillis() - startTime < 10000) {
             try {
-                button.check(matches(allOf(isClickable(), isDisplayed())));
+                button.check(matches(allOf(isClickable(), isDisplayed())))
                 button.perform(click())
-
+                // We need to wait for the progress indicator to be displayed because sometimes performing click is not working
                 progressIndicator.check(matches(object : TypeSafeMatcher<View>() {
                     override fun describeTo(description: Description?) {
                         description?.appendText("Indeterminate progress bar")
@@ -46,7 +44,7 @@ class MediaActivityTest {
                         return item is CircularProgressIndicator && item.isIndeterminate
                     }
                 }))
-                textViewHasText = true
+                clicked = true
             } catch (e: Throwable) {
                 Thread.sleep(100)
             }
@@ -55,7 +53,7 @@ class MediaActivityTest {
         Thread.sleep(10000) // Wait for encoding to complete (adjust time as needed)
 
         // Verify that the "Complete" Toast is displayed
-        onView(withId(R.id.content)).check(matches(withText("Complete")));
+        onView(withId(R.id.content)).check(matches(withText("Complete")))
 
     }
 

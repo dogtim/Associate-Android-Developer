@@ -26,7 +26,7 @@ sealed class EncodingState {
     object Loading : EncodingState()
     object Complete : EncodingState()
 }
-class MediaViewModel : ViewModel() {
+class MediaViewModel(private val height: Int, private val width: Int) : ViewModel() {
     private val TAG = this::class.simpleName
     private var videoTrackIndex: Int = 0
     private var callback: ContextCallback? = null
@@ -41,12 +41,12 @@ class MediaViewModel : ViewModel() {
     fun startEncoding() {
         if (_state.value == EncodingState.Loading) return
         _state.postValue(EncodingState.Loading)
+        Log.i("Tim", "height $height, width $width")
         CoroutineScope(Dispatchers.IO).launch {
             try {
-                val size = 720
                 val bitrate = 3000000
                 val mime = "video/avc"
-                val format = MediaFormat.createVideoFormat(mime, size, size)
+                val format = MediaFormat.createVideoFormat(mime, width, height)
                 format.setInteger(MediaFormat.KEY_BIT_RATE, bitrate)
                 format.setInteger(MediaFormat.KEY_FRAME_RATE, 30)
                 format.setInteger(
@@ -63,7 +63,7 @@ class MediaViewModel : ViewModel() {
                 val muxer = MediaMuxer(VIDEO_PATH.path, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
                 val bufferInfo = MediaCodec.BufferInfo()
 
-                encode(surface, bufferInfo, codec, muxer, size)
+                encode(surface, bufferInfo, codec, muxer)
                 // Release resources
                 codec.stop()
                 codec.release()
@@ -77,11 +77,10 @@ class MediaViewModel : ViewModel() {
         }
     }
 
-    private fun renderBitmap(drawable: Int, surface: Surface, size: Int) {
+    private fun renderBitmap(drawable: Int, surface: Surface) {
         callback?.let {
             val bitmap = it.getBitmap(drawable)
-            val desiredHeight = (bitmap.height.toFloat() / bitmap.width.toFloat() * size).toInt()
-            val scaledBitmap = Bitmap.createScaledBitmap(bitmap, size, desiredHeight, true)
+            val scaledBitmap = Bitmap.createScaledBitmap(bitmap, width, height, true)
             val canvas: Canvas = surface.lockCanvas(null)
             canvas.drawColor(Color.BLACK, PorterDuff.Mode.CLEAR)
             canvas.drawBitmap(scaledBitmap, 0.0f, 0.0f, null)
@@ -93,8 +92,7 @@ class MediaViewModel : ViewModel() {
         surface: Surface,
         mBufferInfo: MediaCodec.BufferInfo,
         encoder: MediaCodec,
-        muxer: MediaMuxer,
-        size: Int
+        muxer: MediaMuxer
     ) {
         val dequeueTimeoutUsec = 10000L
         val videoDuration = 5 * 1000000L
@@ -103,7 +101,7 @@ class MediaViewModel : ViewModel() {
         val drawableList = listOf(R.drawable.birthday, R.drawable.birthday_cakes, R.drawable.happy_birthday)
         var index = 0
         while (true) {
-            renderBitmap(drawableList[index], surface, size)
+            renderBitmap(drawableList[index], surface)
             val outputBufferIndex = encoder.dequeueOutputBuffer(mBufferInfo, dequeueTimeoutUsec)
             val presentationTimeUs = mBufferInfo.presentationTimeUs
             if (startTime == -1L && presentationTimeUs > 0) {

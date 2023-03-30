@@ -6,6 +6,7 @@ import com.example.associate.training.inventory.data.ItemRoomDatabase
 import com.example.associate.training.koin.HelloRepository
 import com.example.associate.training.koin.HelloRepositoryImpl
 import com.example.associate.training.koin.MyViewModel
+import com.example.associate.training.media.MediaViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -18,6 +19,9 @@ val appModule = module {
 
     // MyViewModel ViewModel
     viewModel { MyViewModel(get()) }
+
+    // Define the MediaViewModel as a Koin dependency
+    factory { (height: Int, width: Int) -> MediaViewModel(height, width) }
 }
 
 class AssociateApplication : Application() {
