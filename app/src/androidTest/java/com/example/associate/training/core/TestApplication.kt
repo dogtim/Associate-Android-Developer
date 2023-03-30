@@ -1,10 +1,8 @@
-package com.example.associate.training
+package com.example.associate.training.core
 
 import android.app.Application
 
-import androidx.test.core.app.ApplicationProvider
 import com.example.associate.training.media.MediaViewModel
-import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 

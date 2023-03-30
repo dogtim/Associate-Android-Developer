@@ -1,4 +1,4 @@
-package com.example.associate.training
+package com.example.associate.training.core
 
 import android.app.Application
 import android.content.Context
