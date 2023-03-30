@@ -62,6 +62,7 @@
 
     <string name="looper_event">Looper Event</string>
     <string name="export_to_video">Export to Video</string>
+    <string name="message">Message: </string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
     <string name="app_widget_description">This is an app widget description</string>

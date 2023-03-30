@@ -8,7 +8,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
@@ -44,12 +43,12 @@ class MediaActivity : AppCompatActivity(), ContextCallback {
     }
 
     private fun showLoading() {
-        binding.loadingProgress.isIndeterminate = true
+        binding.progressIndicator.isIndeterminate = true
     }
 
     private fun showToast(text: String) {
-        Toast.makeText(this, text, Toast.LENGTH_SHORT).show()
-        binding.loadingProgress.isIndeterminate = false
+        binding.progressIndicator.isIndeterminate = false
+        binding.content.text = text
     }
 
     // Grant permission to write to external storage
