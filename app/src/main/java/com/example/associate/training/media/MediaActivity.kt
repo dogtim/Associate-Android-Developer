@@ -10,8 +10,6 @@ import android.os.Environment
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import com.example.associate.training.databinding.ActivityMediaBinding
 import org.koin.core.parameter.parametersOf
 import org.koin.android.ext.android.inject
@@ -30,7 +28,6 @@ class MediaActivity : AppCompatActivity(), ContextCallback {
         setContentView(binding.root)
         setupViewModel()
         setListener()
-        startAnimation()
         grantPermission()
     }
 
@@ -69,23 +66,6 @@ class MediaActivity : AppCompatActivity(), ContextCallback {
         binding.exportToVideo.setOnClickListener {
             viewModel.startEncoding()
         }
-    }
-
-    private fun startAnimation() {
-        val imageView: ImageView = binding.animationImg
-
-        val zoomIn = ObjectAnimator.ofPropertyValuesHolder(
-            imageView,
-            PropertyValuesHolder.ofFloat("scaleX", 1.0f, 3.0f),
-            PropertyValuesHolder.ofFloat("scaleY", 1.0f, 3.0f)
-        ).apply {
-            duration = 1000 // 1 second
-            repeatCount = ValueAnimator.INFINITE
-            repeatMode = ValueAnimator.REVERSE
-        }
-
-        zoomIn.start()
-
     }
 
     override fun getBitmap(drawable: Int): Bitmap {

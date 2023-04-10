@@ -59,8 +59,8 @@ class MediaViewModel(private val height: Int, private val width: Int) : ViewMode
                 val surface: Surface = codec.createInputSurface()
                 codec.start()
                 // Create MediaMuxer and add track
-                val VIDEO_PATH = createTempFile()
-                val muxer = MediaMuxer(VIDEO_PATH.path, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
+                val videoPath = createTempFile()
+                val muxer = MediaMuxer(videoPath.path, MediaMuxer.OutputFormat.MUXER_OUTPUT_MPEG_4)
                 val bufferInfo = MediaCodec.BufferInfo()
 
                 encode(surface, bufferInfo, codec, muxer)
@@ -90,7 +90,7 @@ class MediaViewModel(private val height: Int, private val width: Int) : ViewMode
 
     private fun encode(
         surface: Surface,
-        mBufferInfo: MediaCodec.BufferInfo,
+        bufferInfo: MediaCodec.BufferInfo,
         encoder: MediaCodec,
         muxer: MediaMuxer
     ) {
@@ -102,8 +102,8 @@ class MediaViewModel(private val height: Int, private val width: Int) : ViewMode
         var index = 0
         while (true) {
             renderBitmap(drawableList[index], surface)
-            val outputBufferIndex = encoder.dequeueOutputBuffer(mBufferInfo, dequeueTimeoutUsec)
-            val presentationTimeUs = mBufferInfo.presentationTimeUs
+            val outputBufferIndex = encoder.dequeueOutputBuffer(bufferInfo, dequeueTimeoutUsec)
+            val presentationTimeUs = bufferInfo.presentationTimeUs
             if (startTime == -1L && presentationTimeUs > 0) {
                 startTime = presentationTimeUs
             } else if (startTime != -1L) {
@@ -127,21 +127,21 @@ class MediaViewModel(private val height: Int, private val width: Int) : ViewMode
                 val encodedDataBuffer = encoder.getOutputBuffer(outputBufferIndex)
                     ?: throw RuntimeException("encoderOutputBuffer $outputBufferIndex was null")
 
-                if (mBufferInfo.flags and MediaCodec.BUFFER_FLAG_CODEC_CONFIG != 0) {
+                if (bufferInfo.flags and MediaCodec.BUFFER_FLAG_CODEC_CONFIG != 0) {
                     Log.i(TAG, "ignoring BUFFER_FLAG_CODEC_CONFIG")
-                    mBufferInfo.size = 0
+                    bufferInfo.size = 0
                 }
 
-                if (mBufferInfo.size != 0) {
+                if (bufferInfo.size != 0) {
                     // adjust the ByteBuffer values to match BufferInfo
-                    encodedDataBuffer.position(mBufferInfo.offset)
-                    encodedDataBuffer.limit(mBufferInfo.offset + mBufferInfo.size)
-                    muxer.writeSampleData(videoTrackIndex, encodedDataBuffer, mBufferInfo)
+                    encodedDataBuffer.position(bufferInfo.offset)
+                    encodedDataBuffer.limit(bufferInfo.offset + bufferInfo.size)
+                    muxer.writeSampleData(videoTrackIndex, encodedDataBuffer, bufferInfo)
                 }
 
                 encoder.releaseOutputBuffer(outputBufferIndex, false)
 
-                if (mBufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) {
+                if (bufferInfo.flags and MediaCodec.BUFFER_FLAG_END_OF_STREAM != 0) {
                     Log.i(TAG, "Get EOS")
                     break
                 }

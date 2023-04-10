@@ -40,7 +40,7 @@ open class MainActivity : AppCompatActivity() {
     open fun getList(): List<Entry> {
         return listOf(
             Entry("ComposeActivity", ComposeActivity::class.java),
-            Entry("AnimationActivity", MediaActivity::class.java),
+            Entry("MediaActivity", MediaActivity::class.java),
             Entry("KoinActivity", KoinActivity::class.java),
             Entry("ViewsActivity", ViewsActivity::class.java),
             Entry("MiscActivity", MiscActivity::class.java),
