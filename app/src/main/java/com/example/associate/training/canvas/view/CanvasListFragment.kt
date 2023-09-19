@@ -18,7 +18,7 @@ import com.example.associate.training.databinding.ActivityMainBinding
 
 class CanvasListFragment : Fragment() {
 
-    private lateinit var adapter: TestAdapter
+    private lateinit var adapter: CanvasListAdapter
     private lateinit var binding: ActivityMainBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,7 +36,7 @@ class CanvasListFragment : Fragment() {
     }
 
     private fun setupAdapter() {
-        adapter = TestAdapter(CanvasViewType.values().toList(), activity as AppCompatActivity)
+        adapter = CanvasListAdapter(CanvasViewType.values().toList(), activity as AppCompatActivity)
         binding.tutorsRecyclerView.layoutManager = LinearLayoutManager(binding.root.context)
         binding.tutorsRecyclerView.adapter = adapter
     }
@@ -45,7 +45,7 @@ class CanvasListFragment : Fragment() {
 
 enum class CanvasViewType { XFERS_MODE, CIRCULAR_AVATAR, SAVE_LAYER, SAVE_RESTORE }
 
-class TestAdapter(private val entries: List<CanvasViewType>, private val activity: AppCompatActivity) :
+class CanvasListAdapter(private val entries: List<CanvasViewType>, private val activity: AppCompatActivity) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

@@ -24,7 +24,7 @@ public class SavedStateViewModel extends ViewModel {
 
     private static final String NAME_KEY = "name";
 
-    private SavedStateHandle mState;
+    private final SavedStateHandle mState;
 
     public SavedStateViewModel(SavedStateHandle savedStateHandle) {
         mState = savedStateHandle;
