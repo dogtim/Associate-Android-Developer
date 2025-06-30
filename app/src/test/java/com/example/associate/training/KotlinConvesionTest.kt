@@ -12,8 +12,8 @@ class KotlinConvesionTest {
         // Structural equality uses the == operator and calls equals() to determine if two instances are equal.
         // Referential equality uses the === operator and checks if two references point to the same object.
 
-        val user1 = User<Any>("Jane", "Doe")
-        val user2 = User<Any>("Jane", "Doe")
+        val user1 = User("Jane", "Doe")
+        val user2 = User("Jane", "Doe")
         // structurallyEqual
         assertTrue(user1 == user2)
         // referentiallyEqual

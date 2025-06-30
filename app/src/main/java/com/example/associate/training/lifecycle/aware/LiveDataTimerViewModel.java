@@ -15,9 +15,9 @@ public class LiveDataTimerViewModel extends ViewModel {
 
     private static final int ONE_SECOND = 1000;
 
-    private MutableLiveData<Long> mElapsedTime = new MutableLiveData<>();
+    private final MutableLiveData<Long> mElapsedTime = new MutableLiveData<>();
 
-    private long mInitialTime;
+    private final long mInitialTime;
     private final Timer timer;
 
     public LiveDataTimerViewModel() {
